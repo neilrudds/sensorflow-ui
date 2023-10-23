@@ -1,12 +1,30 @@
 import MainContent from './components/ui/MainContent';
-import NavBar from './components/ui/NavBar';
+import Root from './components/ui/Root';
+import WorkspaceContent from './components/ui/WorkSpace';
+import ErrorContent from './components/ui/ErrorPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorContent />,
+    children: [
+      {
+        path: "/",
+        element: <MainContent />
+      },
+      {
+        path: "workspace/:workspaceId",
+        element: <WorkspaceContent />
+      }
+    ]
+  }
+]);
 
 const App = () => {
   return (
-    <div className="flex">
-       <NavBar />
-       <MainContent />
-    </div>
+    <RouterProvider router={router} />
   );
 }
 

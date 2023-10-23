@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { BsArrowLeftShort, BsChevronDown, BsFillImageFill, BsPerson, BsReverseLayoutTextSidebarReverse, BsSearch } from "react-icons/bs";
 import { AiFillEnvironment, AiOutlineBarChart, AiOutlineFileText, AiOutlineLogout, AiOutlineSetting, AiOutlineMail } from "react-icons/ai";
 import { RiDashboardFill } from "react-icons/ri";
+import { Outlet } from 'react-router-dom';
 
-const NavBar = () => {
+const Root = () => {
   const [open, setOpen] = useState(true);
   const [subMenuOpen, setSubMenuOpen] = useState(false);
 
@@ -29,6 +30,7 @@ const NavBar = () => {
   ];
 
   return (
+    <div className="flex">
       <div className={`bg-dark-purple h-screen p-5 pt-8 ${open ? "w-72" : "w-20"} duration-300 relative`}>
         <BsArrowLeftShort 
           className={`bg-white text-dark-purple text-3xl rounded-full absolute -right-3 top-9 border border-dark-purple cursor-pointer 
@@ -69,7 +71,9 @@ const NavBar = () => {
           ))}
         </ul>
       </div>
+      <Outlet />
+    </div>
   );
 }
 
-export default NavBar;
+export default Root;
