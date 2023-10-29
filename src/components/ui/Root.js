@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { BsArrowLeftShort, BsChevronDown, BsFillImageFill, BsPerson, BsReverseLayoutTextSidebarReverse, BsSearch } from "react-icons/bs";
-import { AiFillEnvironment, AiOutlineBarChart, AiOutlineFileText, AiOutlineLogout, AiOutlineSetting, AiOutlineMail } from "react-icons/ai";
+import { AiOutlineBarChart, AiOutlineFileText, AiOutlineLogout, AiOutlineSetting, AiOutlineMail } from "react-icons/ai";
 import { RiDashboardFill } from "react-icons/ri";
+import WorkspaceSelect from "./WorkspaceSelect"
 import { Outlet } from 'react-router-dom';
 
 const Root = () => {
@@ -36,15 +37,14 @@ const Root = () => {
           className={`bg-white text-dark-purple text-3xl rounded-full absolute -right-3 top-9 border border-dark-purple cursor-pointer 
           ${!open && "rotate-180"}`} onClick={() => setOpen(!open)}
         />
-        <div className="inline-flex">
-          <AiFillEnvironment className={`bg-amber-300 text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"}`}></AiFillEnvironment>
-          <h1 className={`text-white origin-left font-medium text-2xl duration-300 ${!open && "scale-0"}`}>SensorFlow</h1>
-        </div>
+        {/*
         <div className={`flex items-center rounded-md bg-light-white ${open ? "px-4" : "px-2.5"} mt-6 py-2`}>
           <BsSearch className={`text-white text-lg block float-left cursor-pointer ${ open && "mr-2"}`} />
-          <input type={"search"} plaseholder="Search" className={`text-base bg-transparent w-full text-white focus:outline-none ${!open && "hidden"}`}></input>
+          <input type={"search"} placeholder="Search" className={`text-base bg-transparent w-full text-white focus:outline-none ${!open && "hidden"}`}></input>
         </div>
-        <ul class="pt-2">
+        */}
+        <WorkspaceSelect />
+        <ul className="pt-2">
           {Menus.map((menu, index) => (
             <>
             <li key={index} className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md ${menu.spacing ? "mt-9" : "mt-2"}`}>
@@ -71,7 +71,7 @@ const Root = () => {
           ))}
         </ul>
       </div>
-      <Outlet />
+      <Outlet context={[open, setOpen]}/>
     </div>
   );
 }

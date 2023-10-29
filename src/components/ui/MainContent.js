@@ -1,9 +1,18 @@
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
+import { AiFillEnvironment } from "react-icons/ai";
+import { useOutletContext } from "react-router-dom";
+
+
 
 const MainContent = () => {
+    const [open, setOpen] = useOutletContext();
+
     return (
         <main className="flex-1 py-6 px-4 relative">
-        <h1 className="text-2xl pb-4 font-semibold">Home Page</h1>
+        <div className="pb-6">
+          <AiFillEnvironment className={`bg-amber-300 text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"}`}></AiFillEnvironment>
+          <h1 className="text-gray-500 origin-left font-medium text-2xl duration-300">SensorFlow</h1>
+        </div>
         <div className="flex justify-between ...">
           <div className="font-semibold text-xl">Dashboard 1</div>
           <div>Toggle Switch</div>
