@@ -1,11 +1,11 @@
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
 import { AiFillEnvironment } from "react-icons/ai";
 import { useOutletContext } from "react-router-dom";
-
-
+import { useParams } from 'react-router-dom';
 
 const MainContent = () => {
     const [open, setOpen] = useOutletContext();
+    let { workspaceId } = useParams();
 
     return (
         <main className="flex-1 py-6 px-4 relative">
@@ -14,7 +14,7 @@ const MainContent = () => {
           <h1 className="text-gray-500 origin-left font-medium text-2xl duration-300">SensorFlow</h1>
         </div>
         <div className="flex justify-between ...">
-          <div className="font-semibold text-xl">Dashboard 1</div>
+          <div className="font-semibold text-xl">{workspaceId}</div>
           <div>Toggle Switch</div>
         </div>
         <p><br/><br/></p>

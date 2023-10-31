@@ -15,7 +15,7 @@ export default function withClickOutside(WrappedComponent) {
             document.addEventListener("mousedown", handleClickOutside);
         }, [ref]);
 
-        return <WrappedComponent open={open} setOpen={setOpen} ref={ref} />;
+        return <WrappedComponent props={props} open={open} setOpen={setOpen} ref={ref} />;
     };
 
     return Component;
