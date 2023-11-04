@@ -1,9 +1,14 @@
-import { forwardRef } from "react";
+import { forwardRef, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import withClickOutside from "../../utils/withClickOutside";
+import WorkspaceContext from "../../context/workspace-context";
+import AuthContext from "../../context/auth-context";
 
 const WorkspaceSelect = forwardRef(({props, open, setOpen}, ref) => {
-    
     const { isNavOpen, openNav } = props;
+    let auth = useContext(AuthContext);
+    const { workspace, setWorkspace } = useContext(WorkspaceContext);
+    const navigate = useNavigate();
 
     const data = 
     {
@@ -49,7 +54,7 @@ const WorkspaceSelect = forwardRef(({props, open, setOpen}, ref) => {
                         <>
                             <div className="shrink-1 truncate">
                                 <p className="text-base text-left truncate font-medium text-white group-hover:text-white" title="FirstWorkspace">{data.workspace.name}</p>
-                                <p className="text-sm text-left truncate font-medium text-gray-500 group-hover:text-white" title="neilrudds@hotmail.com">{data.user.email}</p>
+                                <p className="text-sm text-left truncate font-medium text-gray-500 group-hover:text-white" title={auth.user}>{auth.user}</p>
                             </div>
                             <svg className="flex-shrink-0 h-5 w-5 text-gray-400 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
@@ -63,7 +68,7 @@ const WorkspaceSelect = forwardRef(({props, open, setOpen}, ref) => {
                     <div className="focus:outline-none focus:ring-0 overflow-y-auto pb-1 max-h-[600px]">
                         {data.workspaces.map((workspace, index) => (
                             <div className="py-1 overflow-y-auto divide-y divide-gray-200">
-                                <a className={`text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none flex items-center space-x-3 ${data.workspace.name === workspace.name && "bg-blue-100"}`} href={`/${workspace.slug}/devices`} role="none">
+                                <a className={`text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none flex items-center space-x-3 ${data.workspace.name === workspace.name && "bg-blue-100"}`} onClick={() => {setWorkspace({id: workspace.id, name: workspace.name}); navigate('/' + workspace.slug + '/devices'); setOpen(false)}} role="none">
                                     <p className="h-7 w-7 rounded-full flex items-center justify-center bg-gray-600 text-white font-medium text-sm flex-shrink-0" role="none">
                                         <span role="none">{workspace.name.charAt(0)}</span>
                                     </p>
@@ -79,9 +84,9 @@ const WorkspaceSelect = forwardRef(({props, open, setOpen}, ref) => {
                             </div>
                         ))}
                         <div className="border-t border-gray-200 divide-y divide-gray-200" role="none">
-                            <button type="button" className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" id="headlessui-menu-item-:r26:" role="menuitem" tabindex="-1" data-headlessui-state="">Add Workspace</button>
-                            <button type="button" className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" id="headlessui-menu-item-:r27:" role="menuitem" tabindex="-1" data-headlessui-state="">Account Settings</button>
-                            <button type="button" className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" id="headlessui-menu-item-:r28:" role="menuitem" tabindex="-1" data-headlessui-state="">Logout</button></div>
+                            <button type="button" className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" tabindex="-1">Add Workspace</button>
+                            <button type="button" className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" tabindex="-1">Account Settings</button>
+                            <button type="button" className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" tabindex="-1">Logout</button></div>
                     </div>
                 </div>
             </section>

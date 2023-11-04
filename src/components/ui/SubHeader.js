@@ -1,6 +1,6 @@
  import { useMatches } from "react-router-dom";
  
- const SubHeader = (props) => {
+ export default function SubHeader(props) {
     const { title } = props;
 
     let matches = useMatches();
@@ -10,9 +10,6 @@
     // now map them into an array of elements, passing the loader
     // data to each one
     .map((match) => match.handle.crumb(match.data));
-
-    console.log({ matches });
-    console.log("Layout", { crumbs });
 
     return (
         <>
@@ -33,5 +30,3 @@
         </>
     );
 }
-
-export default SubHeader;

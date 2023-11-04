@@ -1,14 +1,23 @@
-import MainContent from './components/ui/MainContent';
 import Root from './components/ui/Root';
-import WorkspaceContent from './components/ui/WorkSpace';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+
+import WorkspaceContent from './components/ui/WorkspaceContent';
 import Index from './components/ui/Index';
 import ErrorContent from './components/ui/ErrorPage';
-import { createBrowserRouter, RouterProvider, Navigate, useMatches } from 'react-router-dom';
+import WorkspaceProvider from './utils/WorkspaceProvider';
+import SignupPage from './pages/Signup';
+import LoginPage from './pages/Login';
+import RequireAuth from './utils/RequireAuth';
+import AuthProvider from './utils/AuthProvider';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: (
+      <RequireAuth>
+        <Root />
+      </RequireAuth>
+    ),
     handle: {
       crumb: ()=> "Home"
     },
@@ -51,12 +60,25 @@ const router = createBrowserRouter([
         ]
       }
     ]
+  },
+  {
+    path: "/signup",
+    element: <SignupPage />
+  },
+  {
+    path: "/login",
+    element: <LoginPage />
   }
 ]);
 
 const App = () => {
+
   return (
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <WorkspaceProvider>
+        <RouterProvider router={router} />
+      </WorkspaceProvider>
+    </AuthProvider>
   );
 }
 

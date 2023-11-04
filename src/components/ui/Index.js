@@ -1,12 +1,11 @@
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
-import { AiFillEnvironment } from "react-icons/ai";
 import SubHeader from "./SubHeader";
 
-const Index = () => {
+export default function Index() {
     return (
         <>
         <SubHeader title="Create a workspace" />
-        <div className="w-full flex flex-col space-y-4 justify-center items-center p-4 sm:m-10">
+        <div className="flex flex-col space-y-4 justify-center items-center p-4 sm:m-10">
         <div className="text-4xl text-gray-400">
             <BsFillExclamationTriangleFill />
         </div>
@@ -15,5 +14,3 @@ const Index = () => {
         </>
     );
 }
-
-export default Index;

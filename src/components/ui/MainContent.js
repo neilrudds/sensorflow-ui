@@ -3,7 +3,7 @@ import { AiFillEnvironment } from "react-icons/ai";
 import { useOutletContext } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 
-const MainContent = () => {
+export default function MainContent() {
     const [open, setOpen] = useOutletContext();
     let { workspaceId } = useParams();
 
@@ -18,7 +18,7 @@ const MainContent = () => {
           <div>Toggle Switch</div>
         </div>
         <p><br/><br/></p>
-        <div className="w-full flex flex-col space-y-4 justify-center items-center p-4 sm:m-10">
+        <div className="flex flex-col space-y-4 justify-center items-center p-4 sm:m-10">
           <div className="text-4xl text-gray-400">
             <BsFillExclamationTriangleFill />
           </div>
@@ -27,5 +27,3 @@ const MainContent = () => {
       </main>
     );
 }
-
-export default MainContent;
