@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import Input from "../../components/form/Input.js"
 import FormAction from "../../components/form/FormAction";
 import loginFields from "./loginFields.js";
-import AuthStatus from "../../components/ui/AuthStatus.js";
 import AuthContext from "../../context/auth-context.js"
 
 
@@ -28,10 +27,9 @@ export default function LoginForm() {
     const handleSubmit = (event) => {
         event.preventDefault();
         let username = formData.email;
+        let password = formData.password;
 
-        console.log(username);
-
-        auth.signin(username, () => {
+        auth.signin(username, password, () => {
             // Send them back to the page they tried to visit when they were
             // redirected to the login page. Use { replace: true } so we don't create
             // another entry in the history stack for the login page.  This means that
@@ -41,11 +39,15 @@ export default function LoginForm() {
             navigate(from, { replace: true });
         });
     }
-
+    
     return(
-        <body className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300">
+        <body className="min-h-screen bg-gradient-to-b from-gray-900 via-dark-purple to-violet-600">
             <div className="flex items-center justify-center h-screen">
                 <form className="space-y-6 shadow-md rounded px-8 pt-6 pb-8 mb-4 bg-white" onSubmit={handleSubmit}>
+                    { auth.error &&
+                    <h3 className="error"> { auth.error } </h3>
+                    }
+                    <h2>Sign in!</h2>
                     {
                         formFields.map(field =>
                             <Input
@@ -63,7 +65,8 @@ export default function LoginForm() {
                         
                         )
                     }
-                    <FormAction handleSubmit={handleSubmit} text="Login" />       
+                    <FormAction handleSubmit={handleSubmit} text="Login" />
+                    <a href="/signup">Click here to create an account.</a>
                 </form>
             </div>
         </body>
