@@ -1,38 +1,20 @@
-import { forwardRef, useContext, useState, useEffect } from "react";
+import { forwardRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import withClickOutside from "../../utils/withClickOutside";
 import WorkspaceContext from "../../context/workspace-context";
 import AuthContext from "../../context/auth-context";
+import AddWorkspaceModal from "../modal/AddWorkspaceModal";
 
-const WorkspaceSelect = forwardRef(({props, open, setOpen}, ref) => {
+const WorkspaceSelect = forwardRef(({ props, open, setOpen }, ref) => {
     const { isNavOpen, openNav } = props;
     let auth = useContext(AuthContext);
     let user = JSON.parse(auth.user);
     const { workspace, setWorkspace } = useContext(WorkspaceContext);
     const navigate = useNavigate();
-    let [workspaceData, setWorkspaceData] = useState([])
-
-    useEffect(() => {
-        fetch('https://localhost:7026/api/Workspaces', {
-            method: 'GET',
-            headers:{
-              Accept: 'application/json',
-                       'Content-Type': 'application/json',
-                       'Authorization': "Bearer " + user.jwtToken
-            },})
-          .then((res) => {
-            return res.json();
-          })
-          .then((data) => {
-            console.log("Workspaces: ", data);
-            setWorkspaceData(data);
-          });
-        }, []
-    );
 
     return (
         <div className={`${isNavOpen ? "p-4" : "p-0"} relative focus:ring-0 focus:outline-none`}>
-            <button className="max-w-full group block focus:outline-none focus:ring-0" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => {setOpen(!open); openNav(true);}}>
+            <button className="max-w-full group block focus:outline-none focus:ring-0" type="button" aria-haspopup="true" aria-expanded="false" onClick={() => { setOpen(!open); openNav(true); }}>
                 <div className="flex items-center w-full justify-between space-x-3 focus:ring-0">
                     <div>
                         <p className="h-10 w-10 rounded-full flex items-center justify-center bg-gray-400 text-white font-medium text-xl">
@@ -53,11 +35,11 @@ const WorkspaceSelect = forwardRef(({props, open, setOpen}, ref) => {
                 </div>
             </button>
             <section ref={ref}>
-                <div className={`z-10 mx-3 origin-top absolute mt-2 right-0 left-0 rounded-md shadow-lg bg-white divide-y divide-gray-200 focus:outline-none focus:ring-0 transform opacity-100 scale-100 ${!open && "hidden"}`}>
+                <div className={`z-10 mx-3 origin-top absolute mt-2 right-0 left-0 rounded-md shadow-lg bg-white divide-y divide-gray-200 focus:outline-none focus:ring-0 opacity-100 ${!open && "hidden"}`}>
                     <div className="focus:outline-none focus:ring-0 overflow-y-auto pb-1 max-h-[600px]">
-                        {workspaceData.map((ws, index) => (
+                        {workspace.allWsData && workspace.allWsData.map((ws, index) => (
                             <div className="py-1 overflow-y-auto divide-y divide-gray-200">
-                                <a className={`text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none flex items-center space-x-3 ${workspace.name === ws.name && "bg-blue-100"}`} onClick={() => {setWorkspace({id: ws.id, name: ws.name}); navigate('/' + ws.name + '/devices'); setOpen(false)}} role="none">
+                                <a className={`text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none flex items-center space-x-3 ${workspace.name === ws.name && "bg-blue-100"}`} onClick={() => { setWorkspace({...workspace, id: ws.id, name: ws.name, currWsData: workspace.allWsData.filter((d) => d.id.includes(ws.id)) }); navigate('/' + ws.name + '/devices'); setOpen(false) }} role="none">
                                     <p className="h-7 w-7 rounded-full flex items-center justify-center bg-gray-600 text-white font-medium text-sm flex-shrink-0" role="none">
                                         <span role="none">{ws.name.charAt(0)}</span>
                                     </p>
@@ -73,14 +55,14 @@ const WorkspaceSelect = forwardRef(({props, open, setOpen}, ref) => {
                             </div>
                         ))}
                         <div className="border-t border-gray-200 divide-y divide-gray-200" role="none">
-                            <button type="button" className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" tabindex="-1">Add Workspace</button>
+                            <AddWorkspaceModal />
                             <button type="button" className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" tabindex="-1">Account Settings</button>
-                            <button 
-                                type="button" 
-                                className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none" 
-                                onClick={() => {auth.signout(() => navigate('/'));}} 
+                            <button
+                                type="button"
+                                className="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none"
+                                onClick={() => { auth.signout(() => navigate('/')); }}
                                 tabindex="-1">
-                                    Logout
+                                Logout
                             </button>
                         </div>
                     </div>

@@ -11,15 +11,17 @@ export default function AuthStatus() {
     }
 
     return (
-        <p>
-            Welcome {auth.user}!{' '}
-            <button
-                onClick={() => {
-                    auth.signout(() => navigate('/'));
-                }}
-            >
-                Sign out
-            </button>
-        </p>
+        <div className="break-all">
+            <p>
+                Welcome {auth.user}!{' '}
+                <button
+                    onClick={() => {
+                        auth.signout(() => navigate('/'));
+                    }}
+                >
+                    Sign out
+                </button>
+            </p>
+        </div>
     );
 }

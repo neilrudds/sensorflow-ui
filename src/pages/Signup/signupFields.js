@@ -30,13 +30,23 @@ const signupFields = [
         placeholder:"e.g. joe.bloggs@domain.com"   
     },
     {
+        labelText:"Name of your company/organisation",
+        labelFor:"company",
+        id:"company",
+        name:"company",
+        type:"text",
+        autoComplete:"company",
+        isRequired:true,
+        placeholder:"e.g. the name of your company, organisation or your name"
+    },
+    {
         labelText:"Name of your first workspace",
         labelFor:"workspace",
         id:"workspace",
         name:"workspace",
         type:"text",
         autoComplete:"workspace",
-        isRequired:false,
+        isRequired:true,
         placeholder:"e.g. the name of your company or your name"
     },
     {

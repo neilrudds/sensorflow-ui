@@ -2,6 +2,7 @@ import Root from './components/ui/Root';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
 import WorkspaceContent from './components/ui/WorkspaceContent';
+import Dashboard from './pages/Dashboard/index'
 import Index from './components/ui/Index';
 import ErrorContent from './components/ui/ErrorPage';
 import WorkspaceProvider from './utils/WorkspaceProvider';
@@ -55,7 +56,10 @@ const router = createBrowserRouter([
           },
           {
             path: "dashboard/:dashboardId",
-            element: null
+            element: <Dashboard />,
+              handle: {
+              crumb: ()=> "Dashboard"
+            }
           }
         ]
       }

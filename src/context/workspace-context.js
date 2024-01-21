@@ -4,6 +4,8 @@ import { createContext } from "react";
 const WorkspaceContext = createContext({
     id: null,
     name: null,
+    currWsData: null,
+    allWsData: null,
     setWorkspace: () => {}
 });
 

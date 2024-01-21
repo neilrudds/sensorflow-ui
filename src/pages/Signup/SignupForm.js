@@ -30,14 +30,20 @@ export default function SignupForm() {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                userName: formData.email,
-                firstName: formData.firstname,
-                lastName: formData.lastname,
-                email: formData.email,
-                password: formData.password
+                name: formData.company,
+                user: {
+                    userName: formData.email,
+                    firstName: formData.firstname,
+                    lastName: formData.lastname,
+                    email: formData.email,
+                    password: formData.password
+                },
+                workspace: {
+                    name: formData.workspace
+                }
               })
         };
-        fetch('https://localhost:7026/api/User', requestOptions)
+        fetch('https://localhost:7026/api/Tenants', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
