@@ -10,6 +10,7 @@ import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
 import RequireAuth from './utils/RequireAuth';
 import AuthProvider from './utils/AuthProvider';
+import { StrictMode } from 'react';
 
 const router = createBrowserRouter([
   {
@@ -78,11 +79,13 @@ const router = createBrowserRouter([
 const App = () => {
 
   return (
-    <AuthProvider>
-      <WorkspaceProvider>
-        <RouterProvider router={router} />
-      </WorkspaceProvider>
-    </AuthProvider>
+    <StrictMode>
+      <AuthProvider>
+        <WorkspaceProvider>
+          <RouterProvider router={router} />
+        </WorkspaceProvider>
+      </AuthProvider>
+    </StrictMode>
   );
 }
 

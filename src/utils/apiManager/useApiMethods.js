@@ -19,10 +19,10 @@ export default function useApiMethods() {
         };
     };
 
-    function apiRequest(method, url, body = {}) {
+    function apiRequest(method, url, body) {
         url = BASE_URL + url;
         return new Promise((resolve, reject) => {
-            fetch(url, { method, if (body) { body: JSON.stringify(body) }, headers: getHeaders() })
+            fetch(url, { method, body: JSON.stringify(body), headers: getHeaders() })
                 .then(res => res.json())
                 .then(resolve)
                 .catch(reject);

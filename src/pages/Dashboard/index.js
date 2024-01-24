@@ -2,13 +2,14 @@ import SubHeader from "../../components/ui/SubHeader";
 import Grid from "./Grid"
 import { useParams } from 'react-router-dom';
 
+
 export default function Dashboard() {
-    let { dashboardName } = useParams();
+    let { dashboardId } = useParams();
 
     return (
         <>
-            <SubHeader title={ dashboardName } />
-            <Grid />
+            <SubHeader title={ dashboardId } />
+            <Grid dashboardId={ dashboardId } />
         </>
     )
 }
