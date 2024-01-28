@@ -1,58 +1,101 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Responsive, WidthProvider } from "react-grid-layout";
 import { apiDashboard } from "../../utils/apiManager/apiDashboard";
-import Widget from './Widget';
+import Widget from "./Widget";
 
-const originalItems = ["Widget A", "Widget B", "Widget C", "Widget D"];
-
-const initialLayouts = {
-    lg: [
-        { i: 'Widget A', x: 0, y: 0, w: 1, h: 2 },
-        { i: 'Widget B', x: 1, y: 0, w: 3, h: 2 },
-        { i: 'Widget C', x: 4, y: 0, w: 1, h: 2 },
-        { i: 'Widget D', x: 0, y: 2, w: 2, h: 2 },
-    ]
-};
+const widgetDefaults = [
+    { component: "value", minW: 2, minH: 2 },
+    { component: "chart", minW: 3, minH: 3 }
+];
 
 const Grid = (props) => {
     const ResponsiveGridLayout = useMemo(() => WidthProvider(Responsive), []);
-    const { dashboardId } = props;
     const { getDashboard, updateDashboard } = apiDashboard();
-    const [items, setItems] = useState(originalItems);
-    const [layouts, setLayouts] = useState(initialLayouts);
+    const [items, setItems] = useState([]);
+    const [layouts, setLayouts] = useState([]);
+    const [currGridPos, setCurrGridPos] = useState({ col: 0, row: 0,  height: 0 });
 
     useEffect(() => {
-        getDashboard(dashboardId)
+        getDashboard(props.dashboardId)
             .then((res) => {
-                if (res.gridLayout != null) {
-                    console.log("layout exists in db!");
-                    setLayouts(JSON.parse(res.gridLayout));
+                if (res.gridWidgets != null) {
+                    console.log("Widgets exist in db!");
+                    setItems(JSON.parse(res.gridWidgets));
+                    if (res.gridLayout != null){
+                        console.log("Layout exists in db!");
+                        setLayouts(JSON.parse(res.gridLayout));
+                    }
                 } else {
-                    console.log("layout empty");
-                    setLayouts(initialLayouts);
+                    setItems([]);
+                    setLayouts([]);
                 }
             })
     }, [props]);
 
     const onLayoutChange = (_, allLayouts) => {
-        if (JSON.stringify(layouts) !== JSON.stringify(allLayouts)) {
-            setLayouts(allLayouts);
-            const params = { gridLayout: JSON.stringify(allLayouts) };
-            console.log("Layouts to save: " + params);
-            updateDashboard(dashboardId, params)
-                .then((res) => {
-                    console.log("Layouts saved: " + JSON.stringify(res));
-                });
-        }
+        setLayouts(allLayouts);
+        const params = { gridWidgets: JSON.stringify(items), gridLayout: JSON.stringify(allLayouts) };
+        updateDashboard(props.dashboardId, params)
+            .then((res) => {
+                console.log("Widgets and layouts saved: " + JSON.stringify(res));
+            });
     };
+
     const onLayoutSave = () => {
-        saveToLS('layouts-' + dashboardId, layouts);
+        saveToLS('layouts-' + props.dashboardId, layouts);
     };
+
     const onRemoveItem = (itemId) => {
         setItems(items.filter((i) => i !== itemId));
     };
-    const onAddItem = (itemId) => {
-        setItems([...items, itemId]);
+
+    const getWidgetCordinates = (wd) => {
+        const { col, row, height } = currGridPos;
+
+        let x = (col + wd.minW > 12 ? 0 : col % 12);
+        let y = row;
+
+        if (x === 0) {
+            y += wd.minH;
+            setCurrGridPos({...currGridPos, height: wd.minH});
+        } else {
+            if (wd.minH > height) {
+                y += (wd.minH - height);
+                setCurrGridPos({...currGridPos, height: wd.minH});
+            }
+        }
+        setCurrGridPos({...currGridPos, col: x + wd.minW, row: y});
+
+        return { x, y };
+    }
+
+    const onAddWidget = (type) => {
+        const wd = widgetDefaults.filter(c => c.component === type)[0];
+        const newWidget = {
+            _uid: `widget${items.length + 1}`,
+            component: type,
+            title: `Widget${items.length + 1} title`,
+            headline: `Widget${items.length + 1} headline`
+        };
+
+        const { x, y } = getWidgetCordinates(wd);
+        const newLayout = {
+            i: `widget${items.length + 1}`,
+            x: x, // depeding on breakpoints
+            y: y,
+            w: wd.minW,
+            h: wd.minH,
+            minW: wd.minW,
+            minH: wd.minH
+        };
+
+        console.log("adding widget: " + JSON.stringify(newWidget));
+        setItems([...items, newWidget]);
+        setLayouts({
+            lg: [...(layouts.lg || []),
+                newLayout
+            ]
+        })
     };
 
     return (
@@ -60,31 +103,40 @@ const Grid = (props) => {
             <button
                 type="button"
                 className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-dark-purple text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                onClick={() => onAddItem(1)}
+                onClick={() => onAddWidget("chart")}
             >
-                Add item
+                Add chart
             </button>
+            <button
+                type="button"
+                className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-dark-purple text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                onClick={() => onAddWidget("value")}
+            >
+                Add value
+            </button>
+            { items.length > 0 ?
             <ResponsiveGridLayout
                 className="layout"
                 layouts={layouts}
-                onLayoutChange={onLayoutChange}
                 breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
                 cols={{ lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }}
                 rowHeight={60}
+                onLayoutChange={onLayoutChange}
             >
-                {items.map((key) => (
+                {items.map((w) => (
                     <div
-                        key={key}
+                        key={w._uid}
                         className="widget"
-                    //data-grid={{ w: 3, h: 2, x: 0, y: Infinity }}
+                        /*data-grid={w.layout}*/
                     >
                         <Widget
-                            id={key}
+                            widget={w}
                             onRemoveItem={onRemoveItem}
                         />
                     </div>
                 ))}
             </ResponsiveGridLayout>
+            : <div><p>Dashboard empty, please add a widget to begin.</p></div>}
         </>
     );
 }
