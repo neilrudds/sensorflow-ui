@@ -8,7 +8,7 @@ export default function WorkspaceContent() {
 
     return (
       <>
-        <AuthStatus />
+        {/*<AuthStatus />*/}
         <SubHeader title={workspaceId} />
         <div className="flex flex-col space-y-4 justify-center items-center p-4 sm:m-10">
           <div className="text-4xl text-gray-400">

@@ -66,7 +66,7 @@ const AddDashboardModal = (props) => {
       <CustomModal
         onClose={() => setShowModal(false)}
         visible={showModal}>(
-        <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+        <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed outline-none focus:outline-none">
           <div className="relative w-auto my-10 mx-auto max-w-5xl">
             <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
               <div className="bg-dark-purple px-4 py-3 sm:px-6">
@@ -92,13 +92,6 @@ const AddDashboardModal = (props) => {
                   onClick={() => handleSubmit()}
                 >
                   Add Dashboard
-                </button>
-                <button
-                  type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => setShowModal(false)}
-                >
-                  Cancel
                 </button>
               </div>
             </div>
