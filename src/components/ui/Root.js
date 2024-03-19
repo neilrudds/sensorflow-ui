@@ -30,7 +30,6 @@ export default function Root() {
   }, []);
 
   const Menus = [
-    { title: "Devices", spacing: true, icon: <AiOutlineFileText /> },
     { title: "Reports", icon: <BsFillImageFill /> },
     { title: "Members", icon: <AiOutlineBarChart /> },
     { title: "Workspace", icon: <AiOutlineMail /> },
@@ -63,6 +62,16 @@ export default function Root() {
           ))}
 
           <AddDashboardModal open={open} />
+
+          <li key="devices" className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-9"
+            onClick={() => navigate('/' + workspace.id + '/devices')}>
+            <span className="text-2xl block float-left">
+              <AiOutlineFileText />
+            </span>
+            <span className={`text-base font-medium flex-1 duration-200 ${!open && "hidden"}`}>
+              Devices
+            </span>
+          </li>
 
           {Menus.map((menu, index) => (
             <>

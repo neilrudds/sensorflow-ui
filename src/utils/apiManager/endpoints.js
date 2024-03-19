@@ -10,7 +10,13 @@ const ENDPOINTS = {
     CREATE_WORKSPACE: () =>
     '/Workspaces',
     USER_LOGIN: () =>
-    '/User/login'
+    '/User/login',
+    CREATE_DEVICE: () =>
+    '/Devices',
+    GET_DEVICES_BY_WORKSPACE: (id) =>
+    `/Devices/getByWorkspaceId/${id}`,
+    GET_GATEWAYS_BY_WORKSPACE:  (id) =>
+    `/Gateways/getByWorkspaceId/${id}`
 };
 
 export default ENDPOINTS;

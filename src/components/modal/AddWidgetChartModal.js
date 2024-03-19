@@ -1,10 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import CustomModal from "./Modal";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { apiDevice } from '../../utils/apiManager/apiDevice';
+import WorkspaceContext from "../../context/workspace-context";
 
 export default function AddChartValueModal({ open, onClose, addWidget }) {
+  const { workspace } = useContext(WorkspaceContext);
   const [errorMessage, setErrorMessage] = useState(null);
   const [formData, setFormData] = useState(null);
+  const [devices, setDevices] = useState([]);
+  const [fields, setFields] = useState([]);
+  const { getDevicesByWorkspace } = apiDevice();
+  const [selectedDeviceSerial, setSelectedDeviceSerial] = useState("");
+  const [selectedValueField, setSelectedValueField] = useState("");
+
+  useEffect(() => {
+    updateDevices();
+  }, []);
+
+  const updateDevices = () => {
+    getDevicesByWorkspace(workspace.id)
+      .then((res) => {
+        console.log(JSON.stringify(res));
+        if (res != null) {
+          console.log("Devices exist in db!");
+          setDevices(res);
+        } else {
+          setDevices([]);
+        }
+      })
+  };
+
+  const filterByDeviceId = id => {
+    const device = devices.filter(device => device.id === id);
+    setSelectedDeviceSerial(device[0].id);
+    if (device[0].fields != null && device[0].fields != "") {
+      console.log("Device fields exist!");
+      setFields(JSON.parse(device[0].fields));
+    } else {
+      setFields([]);
+    }
+  }
   
   const handleChange = (event) => {
     setErrorMessage(null);
@@ -25,7 +61,9 @@ export default function AddChartValueModal({ open, onClose, addWidget }) {
       _uid: crypto.randomUUID(),
       component: "chart",
       title: name,
-      headline: subheading
+      headline: subheading,
+      topicSerial: selectedDeviceSerial,
+      topicIdentifier: selectedValueField
     };
     addWidget(newWidget);
     onClose();
@@ -82,8 +120,42 @@ export default function AddChartValueModal({ open, onClose, addWidget }) {
                         </div>
                       </TabPanel>
                       <TabPanel className="space-y-6 mt-6">
-                        <p class="text-sm text-gray-500 dark:text-gray-400">
-                          This is some placeholder content the <strong class="font-medium text-gray-800 dark:text-white">Data tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.</p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                          This is some placeholder content the <strong className="font-medium text-gray-800 dark:text-white">Data tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.
+                        </p>
+                        <div className="field">
+                          <label>Source</label>
+                          <div className="control">
+                            <div className="flex">
+                              <div className="w-1/2 px-2">
+                                <div className="nobulma">
+                                  <div className="flex justify-between items-end">
+                                    <label className="block text-sm font-medium text-gray-700">Device</label>
+                                  </div>
+                                  <div className="mt-1 relative outline-none focus:outline-none">
+                                    <select id="device" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" placeholder="Device" onChange={e => filterByDeviceId(e.target.value)} required>
+                                      <option value=""></option>
+                                      {devices.map((device) => <option value={device.id}>{device.name}</option>)}
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="w-1/2 px-2">
+                                <div className="nobulma">
+                                  <div className="flex justify-between items-end">
+                                    <label className="block text-sm font-medium text-gray-700">Field</label>
+                                  </div>
+                                  <div className="mt-1 relative outline-none focus:outline-none">
+                                    <select id="field" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" onChange={(e) => setSelectedValueField(e.target.value)} placeholder="Field" required>
+                                      <option value=""></option>
+                                      {fields.map((field) => <option value={field.identifier}>{field.name}</option>)}
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </TabPanel>
                     </Tabs>
                   </div>

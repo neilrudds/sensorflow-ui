@@ -11,6 +11,7 @@ import LoginPage from './pages/Login';
 import RequireAuth from './utils/RequireAuth';
 import AuthProvider from './utils/AuthProvider';
 import { StrictMode } from 'react';
+import Devices from './pages/Devices';
 
 const router = createBrowserRouter([
   {
@@ -40,11 +41,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate to="devices" replace />
+            element: <WorkspaceContent />
           },
           {
             path: "devices",
-            element: <WorkspaceContent />,
+            element: <Devices />,
             handle: {
               crumb: ()=> "Devices"
             },

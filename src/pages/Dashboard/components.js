@@ -7,11 +7,12 @@ const Components = {
   chart: ChartWidget
 };
 
-export default block => {
+export default (block, data) => {
   if (typeof Components[block.component] !== "undefined") {
     return React.createElement(Components[block.component], {
       key: block._uid,
-      block: block
+      block: block,
+      data: data
     });
   }
   return React.createElement(

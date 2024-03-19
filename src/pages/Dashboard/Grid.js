@@ -3,6 +3,7 @@ import { Responsive, WidthProvider } from "react-grid-layout";
 import { apiDashboard } from "../../utils/apiManager/apiDashboard";
 import Widget from "./Widget";
 import AddWidgetModal from '../../components/modal/AddWidgetModal';
+import mqtt from 'mqtt';
 
 const widgetDefaults = [
     { component: "value", minW: 2, minH: 3 },
@@ -15,6 +16,50 @@ const Grid = (props) => {
     const [widgets, setWidgets] = useState([]);
     const [layouts, setLayouts] = useState([]);
     const [currGridPos, setCurrGridPos] = useState({ col: 0, row: 0, height: 0 });
+    const [client, setClient] = useState(null);
+    const [connectStatus, setConnectStatus] = useState(false);
+    const [payload, setPayload] = useState({});
+
+
+    const initialConnectionOptions = {
+        url: 'ws://localhost:8000/mqtt',
+        config: {
+            clientId: 'emqx_react_' + Math.random().toString(16).substring(2, 8),
+            username: '',
+            password: '',
+            port: 8000
+        }
+    }
+
+    // MQTT
+    const mqttConnect = (host, mqttOption) => {
+        setConnectStatus('Connecting');
+        setClient(mqtt.connect(host, mqttOption));
+    };
+
+    useEffect(() => {
+        mqttConnect(initialConnectionOptions.url, initialConnectionOptions.config);
+    }, []);
+
+    useEffect(() => {
+        if (client) {
+            console.log(client);
+            client.on('connect', () => {
+                setConnectStatus('Connected');
+            });
+            client.on('error', (err) => {
+                console.error('Connection error: ', err);
+                client.end();
+            });
+            client.on('reconnect', () => {
+                setConnectStatus('Reconnecting');
+            });
+            client.on('message', (topic, message) => {
+                const payload = { topic, message: message.toString() };
+                setPayload(payload);
+            });
+        }
+    }, [client]);
 
     useEffect(() => {
         getDashboard(props.dashboardId)
@@ -111,6 +156,7 @@ const Grid = (props) => {
                         >
                             <Widget
                                 widget={w}
+                                wsClient={client}
                                 onRemoveItem={onRemoveItem}
                             />
                         </div>
