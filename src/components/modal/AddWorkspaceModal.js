@@ -21,7 +21,7 @@ const AddWorkspaceModal = () => {
   } 
 
   const handleSubmit = (event) => {
- 
+
     // Reset errors
     setPostId(null); setErrorMessage(null);
 
@@ -31,17 +31,17 @@ const AddWorkspaceModal = () => {
         .then((res) => {
           console.log(res);
           setPostId(res.Id);
+          try {
+            getWorkspaceByUsername(user.userName)
+              .then((res) => {
+                console.log(res);
+                setWorkspace({ ...workspace, currWsData: res.filter((d) => d.id.includes(workspace.id)), allWsData: res });
+              });
+          } catch (error) {
+            setErrorMessage(error.toString());
+            console.error('There was an error; ', error);
+          }
         })
-      try {
-        getWorkspaceByUsername(user.userName)
-          .then((res) => {
-            console.log(res);
-            setWorkspace({ ...workspace, currWsData: res.filter((d) => d.id.includes(workspace.id)), allWsData: res });
-          });
-      } catch (error) {
-        setErrorMessage(error.toString());
-        console.error('There was an error; ', error);
-      }
       setShowModal(false);
     } catch (error) {
       setErrorMessage(error.toString());

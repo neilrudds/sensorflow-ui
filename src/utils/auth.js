@@ -11,7 +11,7 @@ const authProvider = {
             password: password
           })
     };
-    fetch('http://ec2-54-242-250-176.compute-1.amazonaws.com:4000/api/User/login', requestOptions)
+    fetch('http://ec2-54-234-89-227.compute-1.amazonaws.com:4000/api/User/login', requestOptions)
         .then(async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();
