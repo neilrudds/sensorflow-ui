@@ -43,7 +43,7 @@ export default function SignupForm() {
                 }
               })
         };
-        fetch('https://localhost:7026/api/Tenants', requestOptions)
+        fetch('http://ec2-54-242-250-176.compute-1.amazonaws.com:4000/api/Tenants', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();
