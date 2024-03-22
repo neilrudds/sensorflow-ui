@@ -2,6 +2,7 @@ version: '3'
 services:
   website:
     build:
+      context: .
       dockerfile: Dockerfile
       cache_from:
         - '${WEBSITE_IMAGE}'
