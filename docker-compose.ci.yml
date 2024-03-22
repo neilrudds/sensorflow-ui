@@ -12,5 +12,17 @@ services:
     volumes:
       - website:./website/build/ # build files will be added at this directory !!!
 
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+      cache_from:
+        - '${NGINX_IMAGE}'
+    image: '${NGINX_IMAGE}'
+    ports:
+      - '80:80'
+    volumes:
+      - website:/usr/share/nginx/html/website # Copy React App's build files to the Nginx directory
+
 volumes:
   website:
