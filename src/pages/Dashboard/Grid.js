@@ -22,7 +22,7 @@ const Grid = (props) => {
 
 
     const initialConnectionOptions = {
-        url: 'ws://localhost:8000/mqtt',
+        url: 'ws://ec2-34-224-156-54.compute-1.amazonaws.com:8000/mqtt',
         config: {
             clientId: 'emqx_react_' + Math.random().toString(16).substring(2, 8),
             username: '',
