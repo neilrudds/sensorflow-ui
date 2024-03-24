@@ -1,3 +1,7 @@
+import { config } from './Constants'
+
+const BASE_URL = config.url.API_URL_LOGIN;
+
 const authProvider = {
     isAuthenticated: false,
     user: null,
@@ -11,7 +15,7 @@ const authProvider = {
             password: password
           })
     };
-    fetch('http://ec2-54-234-89-227.compute-1.amazonaws.com:4000/api/User/login', requestOptions)
+    fetch(BASE_URL, requestOptions)
         .then(async response => {
             const isJson = response.headers.get('content-type')?.includes('application/json');
             const data = isJson && await response.json();

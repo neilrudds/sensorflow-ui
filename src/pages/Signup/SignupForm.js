@@ -2,6 +2,9 @@ import { useState } from "react";
 import Input from "../../components/form/Input.js"
 import FormAction from "../../components/form/FormAction";
 import signupFields from "./signupFields";
+import { config } from '../../utils/Constants';
+
+const BASE_URL = config.url.API_URL;
 
 // Setup fields for useState
 const formFields = signupFields;
@@ -43,7 +46,7 @@ export default function SignupForm() {
                 }
               })
         };
-        fetch('http://ec2-54-234-89-227.compute-1.amazonaws.com:4000/api/Tenants', requestOptions)
+        fetch(BASE_URL + '/Tenants', requestOptions)
             .then(async response => {
                 const isJson = response.headers.get('content-type')?.includes('application/json');
                 const data = isJson && await response.json();

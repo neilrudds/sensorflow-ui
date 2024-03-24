@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import AuthContext from "../../context/auth-context";
+import { config } from '../Constants';
 
-const BASE_URL = 'http://ec2-54-234-89-227.compute-1.amazonaws.com:4000/api';
+const BASE_URL = config.url.API_URL;
 
 export default function useApiMethods() {
     const auth = useContext(AuthContext);

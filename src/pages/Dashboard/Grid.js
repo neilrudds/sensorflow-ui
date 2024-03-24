@@ -4,6 +4,9 @@ import { apiDashboard } from "../../utils/apiManager/apiDashboard";
 import Widget from "./Widget";
 import AddWidgetModal from '../../components/modal/AddWidgetModal';
 import mqtt from 'mqtt';
+import { config } from '../../utils/Constants';
+
+const MQTT_URL = config.url.MQTT_WS_URL;
 
 const widgetDefaults = [
     { component: "value", minW: 2, minH: 3 },
@@ -22,7 +25,7 @@ const Grid = (props) => {
 
 
     const initialConnectionOptions = {
-        url: 'ws://ec2-34-224-156-54.compute-1.amazonaws.com:8000/mqtt',
+        url: MQTT_URL,
         config: {
             clientId: 'emqx_react_' + Math.random().toString(16).substring(2, 8),
             username: '',
