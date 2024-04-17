@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 
 function useMQTTSubscribe(client, topic, onMessage) {
   useEffect(() => {
-    if (!client || !client.connected) return;
+    console.log("MQTTSubscribe");
+    if (!client || !client.connected) return () => {
+      console.log("Unable to subscribe.")
+      console.log("Client: " + client.connected);
+    };
     const handleMsg = (receivedTopic, message) => {
       if (receivedTopic === topic) {
         onMessage(message.toString());

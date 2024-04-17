@@ -23,7 +23,6 @@ const Grid = (props) => {
     const [connectStatus, setConnectStatus] = useState(false);
     const [payload, setPayload] = useState({});
 
-
     const initialConnectionOptions = {
         url: MQTT_URL,
         config: {
@@ -61,6 +60,10 @@ const Grid = (props) => {
                 const payload = { topic, message: message.toString() };
                 setPayload(payload);
             });
+            client.stream.on('error', function (error) {
+                // This is the only way to catch a ws error as far as documented https://github.com/mqttjs/MQTT.js/issues/876
+                console.error('Connection error:', error);
+            });
         }
     }, [client]);
 
@@ -95,7 +98,7 @@ const Grid = (props) => {
         setWidgets(widgets.filter(widgets => widgets._uid !== _uid));
     };
 
-    const getWidgetCordinates = (wd) => {
+    const getWidgetCoordinates = (wd) => {
         const { col, row, height } = currGridPos;
 
         let x = (col + wd.minW > 12 ? 0 : col % 12);
@@ -119,7 +122,7 @@ const Grid = (props) => {
         // Get the type boundaries
         const wd = widgetDefaults.filter(c => c.component === widget.component)[0];
 
-        const { x, y } = getWidgetCordinates(wd);
+        const { x, y } = getWidgetCoordinates(wd);
         const newLayout = {
             i: widget._uid,
             x: x, // depeding on breakpoints
@@ -141,6 +144,11 @@ const Grid = (props) => {
 
     return (
         <>
+            <p>{connectStatus ? "Live data" : "Unable to connect to server"}</p>
+            <span className="relative flex h-2 w-2">
+                <span className={`${connectStatus ? ("animate-ping bg-sky-400") : ("bg-orange-400")} absolute inline-flex h-full w-full rounded-full opacity-75`}></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
+            </span>
             <AddWidgetModal addWidget={onAddWidget} />
             {widgets.length > 0 ?
                 <ResponsiveGridLayout

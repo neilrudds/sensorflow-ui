@@ -25,7 +25,7 @@ export default function Root() {
       })
       .then((data) => {
         setWorkspace({ id: data[0].id, name: data[0].name, currWsData: data.filter((d) => d.id.includes(data[0].id)), allWsData: data });
-        navigate('/' + data[0].name + '/devices');
+        navigate('/' + data[0].id + '/devices');
       });
   }, []);
 
@@ -50,7 +50,7 @@ export default function Root() {
 
           {workspace.currWsData && workspace.currWsData[0].dashboards.map((db, index) => (
             <>
-              <li key={index} className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2" onClick={() => navigate('/' + workspace.name + '/dashboard/' + db.id)}>
+              <li key={index} className="text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md mt-2" onClick={() => navigate('/' + workspace.id + '/dashboard/' + db.id)}>
                 <span className="text-2xl block float-left">
                   <RiDashboardFill />
                 </span>
@@ -97,6 +97,7 @@ export default function Root() {
               )}
             </>
           ))}
+          
         </ul>
       </div>
       <main className="flex-1 py-6 px-4 relative bg-slate-50">

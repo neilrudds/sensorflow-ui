@@ -1,7 +1,6 @@
 import { BsFillExclamationTriangleFill } from "react-icons/bs";
 import { useParams } from 'react-router-dom';
 import SubHeader from "./SubHeader";
-import AuthStatus from "./AuthStatus";
 
 export default function WorkspaceContent() {
   let { workspaceId } = useParams();

@@ -39,7 +39,7 @@ const WorkspaceSelect = forwardRef(({ props, open, setOpen }, ref) => {
                     <div className="focus:outline-none focus:ring-0 overflow-y-auto pb-1 max-h-[600px]">
                         {workspace.allWsData && workspace.allWsData.map((ws, index) => (
                             <div className="py-1 overflow-y-auto divide-y divide-gray-200">
-                                <a className={`text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none flex items-center space-x-3 ${workspace.name === ws.name && "bg-blue-100"}`} onClick={() => { setWorkspace({...workspace, id: ws.id, name: ws.name, currWsData: workspace.allWsData.filter((d) => d.id.includes(ws.id)) }); navigate('/' + ws.name); setOpen(false) }} role="none">
+                                <a className={`text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-0 focus:outline-none flex items-center space-x-3 ${workspace.name === ws.name && "bg-blue-100"}`} onClick={() => { setWorkspace({...workspace, id: ws.id, name: ws.name, currWsData: workspace.allWsData.filter((d) => d.id.includes(ws.id)) }); navigate('/' + ws.id + '/devices'); setOpen(false) }} role="none">
                                     <p className="h-7 w-7 rounded-full flex items-center justify-center bg-gray-600 text-white font-medium text-sm flex-shrink-0" role="none">
                                         <span role="none">{ws.name.charAt(0)}</span>
                                     </p>

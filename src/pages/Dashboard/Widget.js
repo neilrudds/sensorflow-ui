@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Components from "./components";
 import useMQTTSubscribe from '../../hooks/useMQTTSubscribe'
 
 export default function Widget({ widget, wsClient, onRemoveItem }) {
   const [message, setMessage] = useState("");
-  useMQTTSubscribe(wsClient, (widget.topicSerial + "/" + widget.topicIdentifier), setMessage);
+  useMQTTSubscribe(wsClient, widget.topicSerial, setMessage);
   
   return (
     <div className="h-full w-full relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-sm">

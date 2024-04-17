@@ -21,7 +21,6 @@ export default function AddChartValueModal({ open, onClose, addWidget }) {
   const updateDevices = () => {
     getDevicesByWorkspace(workspace.id)
       .then((res) => {
-        console.log(JSON.stringify(res));
         if (res != null) {
           console.log("Devices exist in db!");
           setDevices(res);
@@ -135,7 +134,7 @@ export default function AddChartValueModal({ open, onClose, addWidget }) {
                                   <div className="mt-1 relative outline-none focus:outline-none">
                                     <select id="device" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" placeholder="Device" onChange={e => filterByDeviceId(e.target.value)} required>
                                       <option value=""></option>
-                                      {devices.map((device) => <option value={device.id}>{device.name}</option>)}
+                                      {devices.map((device) => <option key={device.id} value={device.id}>{device.name}</option>)}
                                     </select>
                                   </div>
                                 </div>
@@ -148,7 +147,8 @@ export default function AddChartValueModal({ open, onClose, addWidget }) {
                                   <div className="mt-1 relative outline-none focus:outline-none">
                                     <select id="field" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" onChange={(e) => setSelectedValueField(e.target.value)} placeholder="Field" required>
                                       <option value=""></option>
-                                      {fields.map((field) => <option value={field.identifier}>{field.name}</option>)}
+                                      <option value=""></option>
+                                      {fields.map((field) => <option key={field.identifier} value={field.identifier}>{field.name}</option>)}
                                     </select>
                                   </div>
                                 </div>

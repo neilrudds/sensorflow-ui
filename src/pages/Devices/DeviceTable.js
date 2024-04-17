@@ -1,9 +1,12 @@
+import { BsFillExclamationTriangleFill } from "react-icons/bs";
+
 export const DeviceTable = ({devices}) => {
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto">
         <div className="p-1.5 w-full inline-block align-middle">
           <div className="overflow-hidden border rounded-lg">
+            { devices.length > 0 ? (
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
@@ -64,7 +67,14 @@ export const DeviceTable = ({devices}) => {
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </table> ) : (
+                <div className="flex flex-col space-y-4 justify-center items-center p-4 sm:m-10">
+                  <div className="text-4xl text-gray-400">
+                    <BsFillExclamationTriangleFill />
+                  </div>
+                  <h2 className="font-medium text-sm sm:text-lg text-gray-500 text-center">There are currently no devices in this workspace, please click Add Device above to add your first workspace device.</h2>
+                </div>
+            ) }
           </div>
         </div>
       </div>
