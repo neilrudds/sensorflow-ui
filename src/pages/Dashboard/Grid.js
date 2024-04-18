@@ -29,7 +29,10 @@ const Grid = (props) => {
             clientId: 'emqx_react_' + Math.random().toString(16).substring(2, 8),
             username: '',
             password: '',
-            port: 8000
+            port: 8000,
+            clean: true,
+            reconnectPeriod: 1000, // ms
+            connectTimeout: 30 * 1000, // ms
         }
     }
 
@@ -57,15 +60,36 @@ const Grid = (props) => {
                 setConnectStatus('Reconnecting');
             });
             client.on('message', (topic, message) => {
-                const payload = { topic, message: message.toString() };
-                setPayload(payload);
-            });
-            client.stream.on('error', function (error) {
-                // This is the only way to catch a ws error as far as documented https://github.com/mqttjs/MQTT.js/issues/876
-                console.error('Connection error:', error);
-            });
+                const payload = { topic, message: message.toString() }
+                setPayload(payload)
+                console.log(`received message: ${message} from topic: ${topic}`)
+              });
         }
     }, [client]);
+
+    /*useEffect(() => {
+        return () => {
+            console.log("Disconnecting MQTT broker...")
+            if (client) {
+                client.end(() => {
+                    setConnectStatus('Disconnected');
+                });
+            }
+        }
+    }, [])*/
+
+    const mqttDisconnect = () => {
+        if (client) {
+          try {
+            client.end(false, () => {
+              setConnectStatus('Connect')
+              console.log('disconnected successfully')
+            })
+          } catch (error) {
+            console.log('disconnect error:', error)
+          }
+        }
+      }
 
     useEffect(() => {
         getDashboard(props.dashboardId)

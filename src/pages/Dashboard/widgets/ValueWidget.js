@@ -7,7 +7,7 @@ export default props => (
       {props.block.headline}
     </p>
     <p className="block font-sans text-5xl antialiased font-bold leading-relaxed absolute bottom-10">
-      {props.data + ".00"}
+      {props.data ? props.data + ".00" : "0.00"}
     </p>
   </>
 );

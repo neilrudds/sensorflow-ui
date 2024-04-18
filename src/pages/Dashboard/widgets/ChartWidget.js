@@ -33,8 +33,12 @@ export default function ChartWidget(props) {
   const options = {
     chart: {
       id: "realtime",
-      height: 350,
       type: "line",
+      events: {
+        mounted: (chart) => {
+          chart.windowResizeHandler();
+        }
+      },
       animations: {
         enabled: true,
         easing: "linear",
@@ -53,22 +57,27 @@ export default function ChartWidget(props) {
       enabled: false
     },
     stroke: {
+      width: 2,
       curve: "smooth"
     },
     markers: {
-      size: 0
+      size: 1,
+      showNullDataPoints: true
     },
     xaxis: {
-      type: 'datetime'
+      type: 'datetime',
+      labels: {
+        show: true,
+        showDuplicates: true,
+        datetimeUTC: true,
+      },
     },
     yaxis: {
       max: 100
     },
     legend: {
-      show: false
-    },
-    stroke: {
-      width: 1
+      position: "bottom",
+      verticalAlign: "center"
     }
   };
 
@@ -84,7 +93,6 @@ export default function ChartWidget(props) {
         options={options}
         series={series}
         type="line"
-        height={350}
       />
     </>
   )
