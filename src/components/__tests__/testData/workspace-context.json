@@ -1,0 +1,382 @@
+{
+    "id": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+    "name": "GE Enterprises",
+    "currWsData": [
+        {
+            "id": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+            "name": "GE Enterprises",
+            "deviceCount": 1,
+            "userCount": 1,
+            "tenantId": "b8b0ad52-099d-4701-93ee-e3040f623fc1",
+            "dashboards": [
+                {
+                    "id": "12477f92-e306-48fc-b600-143e3b07dfa4",
+                    "name": "My Solar Inverter",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"e23e6190-9772-43fb-8297-88e022b30775\",\"component\":\"value\",\"title\":\"L1 Voltage\",\"headline\":\"Current Voltage in Phase L1\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"voltsL1\"},{\"_uid\":\"d901bcdf-189e-41c1-96bc-2e84c3e4c36d\",\"component\":\"chart\",\"title\":\"L2 Voltage Chart\",\"headline\":\"Charting the voltage in Phase L2\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"voltsL2\"},{\"_uid\":\"74f40576-4196-4438-a272-028a82f7cb03\",\"component\":\"value\",\"title\":\"Ambient Temperature\",\"headline\":\"Current room temperature\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"ambTemp\"},{\"_uid\":\"f6fa6233-6b36-48e8-a609-8370568b17e2\",\"component\":\"chart\",\"title\":\"Average Current\",\"headline\":\"Total average current across phases\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"avgCurr\"},{\"_uid\":\"90541bdd-da42-4672-8390-7467f1b9a291\",\"component\":\"value\",\"title\":\"L2 Voltage\",\"headline\":\"Current Voltage in Phase 2\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"voltsL2\"},{\"_uid\":\"cf22283c-89a5-4011-a945-f58c5f3f15e6\",\"component\":\"value\",\"title\":\"L3 Voltage\",\"headline\":\"Current Voltage in L3\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"voltsL3\"},{\"_uid\":\"6f84f9dd-c384-420b-ab34-962002417891\",\"component\":\"value\",\"title\":\"Average Current\",\"headline\":\"Total average current across phases\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"avgCurr\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":4,\"h\":3,\"x\":0,\"y\":3,\"i\":\"e23e6190-9772-43fb-8297-88e022b30775\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":4,\"h\":6,\"x\":0,\"y\":6,\"i\":\"d901bcdf-189e-41c1-96bc-2e84c3e4c36d\",\"minW\":3,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":6,\"h\":3,\"x\":6,\"y\":0,\"i\":\"74f40576-4196-4438-a272-028a82f7cb03\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":6,\"h\":9,\"x\":6,\"y\":3,\"i\":\"f6fa6233-6b36-48e8-a609-8370568b17e2\",\"minW\":3,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":2,\"h\":3,\"x\":4,\"y\":3,\"i\":\"90541bdd-da42-4672-8390-7467f1b9a291\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":2,\"h\":3,\"x\":4,\"y\":6,\"i\":\"cf22283c-89a5-4011-a945-f58c5f3f15e6\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":6,\"h\":3,\"x\":0,\"y\":0,\"i\":\"6f84f9dd-c384-420b-ab34-962002417891\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-21T13:53:15.3025344",
+                    "lastModifiedTimestamp": "2024-04-18T10:57:30.8574592",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "94b1dfb7-bf62-4ea9-b46e-9e232d1afa4b",
+                    "name": "Wind Turbines",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"dd4e33c8-dfda-4cdb-90fc-80b5e7592cd1\",\"component\":\"value\",\"title\":\"Run Hours\",\"headline\":\"Generator Hours of Operation\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":6,\"h\":5,\"x\":0,\"y\":0,\"i\":\"dd4e33c8-dfda-4cdb-90fc-80b5e7592cd1\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}],\"md\":[{\"w\":6,\"h\":5,\"x\":0,\"y\":0,\"i\":\"dd4e33c8-dfda-4cdb-90fc-80b5e7592cd1\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}],\"xs\":[{\"w\":4,\"h\":5,\"x\":0,\"y\":0,\"i\":\"dd4e33c8-dfda-4cdb-90fc-80b5e7592cd1\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-21T14:28:18.1322638",
+                    "lastModifiedTimestamp": "2024-03-24T21:06:27.1457582",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "a47cdf1e-b4ee-4950-bf56-2532108da06d",
+                    "name": "Fresh Food Chillers",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-02-02T14:14:40.070742",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": null
+                },
+                {
+                    "id": "a797b69c-e8b6-4f77-bf34-15e7ee7ca371",
+                    "name": "Weather Stations",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-21T14:22:35.6731837",
+                    "lastModifiedTimestamp": "2024-01-29T20:54:28.6056591",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "b430da77-776f-43c3-b0fe-583ff174957e",
+                    "name": "My Garage",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"1e4562fb-b5c5-44b1-8f4c-4a5cdc735b6b\",\"component\":\"value\",\"title\":\"Hello1\",\"headline\":\"Hello1headline\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":5,\"h\":3,\"x\":0,\"y\":0,\"i\":\"1e4562fb-b5c5-44b1-8f4c-4a5cdc735b6b\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-24T21:15:19.0560008",
+                    "lastModifiedTimestamp": "2024-02-10T15:28:31.7650185",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "d65e5a18-b053-41ec-a755-7193d9c54ee4",
+                    "name": "Lighting Controls",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"09eb91b7-c5ab-47a5-88ac-cd16aca0a3f4\",\"component\":\"value\",\"title\":\"Living Room\",\"headline\":\"Current Livingroom Temperature\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":5,\"h\":3,\"x\":0,\"y\":0,\"i\":\"09eb91b7-c5ab-47a5-88ac-cd16aca0a3f4\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-20T14:00:43.0908488",
+                    "lastModifiedTimestamp": "2024-02-10T20:16:44.3419586",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "dc1ebf91-742a-4211-894f-4ea50a7f9df7",
+                    "name": "River Level Monitors",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"8a00f2df-8f58-4891-a854-387d4ef3416a\",\"component\":\"value\",\"title\":\"Flow Rate\",\"headline\":\"Instantaneous gas flow rate\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":5,\"h\":3,\"x\":0,\"y\":0,\"i\":\"8a00f2df-8f58-4891-a854-387d4ef3416a\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-21T14:24:17.3103702",
+                    "lastModifiedTimestamp": "2024-02-10T15:36:54.640197",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "e2087213-db4e-48a3-b650-7df6daaccfa4",
+                    "name": "Traffic Management",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-21T14:36:04.1265042",
+                    "lastModifiedTimestamp": "2024-01-29T20:41:31.5909117",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "e4e2637c-bc50-4b56-b88d-c0a050e0e35e",
+                    "name": "Battery Storage Array",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-19T16:44:53.9440129",
+                    "lastModifiedTimestamp": "2024-01-29T20:44:11.7698884",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                }
+            ],
+            "devices": [
+                {
+                    "id": "187243579",
+                    "name": "Neil Python IoT",
+                    "fields": "[{\"id\":1,\"name\":\"Temperature\",\"identifier\":\"ambTemp\",\"type\":\"Float\",\"unit\":\"degC\"},{\"id\":2,\"name\":\"Average Current\",\"identifier\":\"avgCurr\",\"type\":\"integer\",\"unit\":\"Celcius\"},{\"id\":3,\"name\":\"L1 Voltage\",\"identifier\":\"voltsL1\",\"type\":\"integer\",\"unit\":\"mV\"}]",
+                    "createdTimestamp": "2024-03-18T17:10:04.4189527",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "a0dd767b-908d-42de-84f5-b55a68920a04",
+                    "modifiedById": null
+                }
+            ],
+            "createdTimestamp": "2024-01-19T16:38:17.5299134",
+            "lastModifiedTimestamp": "0001-01-01T00:00:00",
+            "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+            "modifiedById": null
+        }
+    ],
+    "allWsData": [
+        {
+            "id": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+            "name": "GE Enterprises",
+            "deviceCount": 1,
+            "userCount": 1,
+            "tenantId": "b8b0ad52-099d-4701-93ee-e3040f623fc1",
+            "dashboards": [
+                {
+                    "id": "12477f92-e306-48fc-b600-143e3b07dfa4",
+                    "name": "My Solar Inverter",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"e23e6190-9772-43fb-8297-88e022b30775\",\"component\":\"value\",\"title\":\"L1 Voltage\",\"headline\":\"Current Voltage in Phase L1\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"voltsL1\"},{\"_uid\":\"d901bcdf-189e-41c1-96bc-2e84c3e4c36d\",\"component\":\"chart\",\"title\":\"L2 Voltage Chart\",\"headline\":\"Charting the voltage in Phase L2\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"voltsL2\"},{\"_uid\":\"74f40576-4196-4438-a272-028a82f7cb03\",\"component\":\"value\",\"title\":\"Ambient Temperature\",\"headline\":\"Current room temperature\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"ambTemp\"},{\"_uid\":\"f6fa6233-6b36-48e8-a609-8370568b17e2\",\"component\":\"chart\",\"title\":\"Average Current\",\"headline\":\"Total average current across phases\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"avgCurr\"},{\"_uid\":\"90541bdd-da42-4672-8390-7467f1b9a291\",\"component\":\"value\",\"title\":\"L2 Voltage\",\"headline\":\"Current Voltage in Phase 2\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"voltsL2\"},{\"_uid\":\"cf22283c-89a5-4011-a945-f58c5f3f15e6\",\"component\":\"value\",\"title\":\"L3 Voltage\",\"headline\":\"Current Voltage in L3\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"voltsL3\"},{\"_uid\":\"6f84f9dd-c384-420b-ab34-962002417891\",\"component\":\"value\",\"title\":\"Average Current\",\"headline\":\"Total average current across phases\",\"topicSerial\":\"187243579\",\"topicIdentifier\":\"avgCurr\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":4,\"h\":3,\"x\":0,\"y\":3,\"i\":\"e23e6190-9772-43fb-8297-88e022b30775\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":4,\"h\":6,\"x\":0,\"y\":6,\"i\":\"d901bcdf-189e-41c1-96bc-2e84c3e4c36d\",\"minW\":3,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":6,\"h\":3,\"x\":6,\"y\":0,\"i\":\"74f40576-4196-4438-a272-028a82f7cb03\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":6,\"h\":9,\"x\":6,\"y\":3,\"i\":\"f6fa6233-6b36-48e8-a609-8370568b17e2\",\"minW\":3,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":2,\"h\":3,\"x\":4,\"y\":3,\"i\":\"90541bdd-da42-4672-8390-7467f1b9a291\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":2,\"h\":3,\"x\":4,\"y\":6,\"i\":\"cf22283c-89a5-4011-a945-f58c5f3f15e6\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false},{\"w\":6,\"h\":3,\"x\":0,\"y\":0,\"i\":\"6f84f9dd-c384-420b-ab34-962002417891\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-21T13:53:15.3025344",
+                    "lastModifiedTimestamp": "2024-04-18T10:57:30.8574592",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "94b1dfb7-bf62-4ea9-b46e-9e232d1afa4b",
+                    "name": "Wind Turbines",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"dd4e33c8-dfda-4cdb-90fc-80b5e7592cd1\",\"component\":\"value\",\"title\":\"Run Hours\",\"headline\":\"Generator Hours of Operation\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":6,\"h\":5,\"x\":0,\"y\":0,\"i\":\"dd4e33c8-dfda-4cdb-90fc-80b5e7592cd1\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}],\"md\":[{\"w\":6,\"h\":5,\"x\":0,\"y\":0,\"i\":\"dd4e33c8-dfda-4cdb-90fc-80b5e7592cd1\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}],\"xs\":[{\"w\":4,\"h\":5,\"x\":0,\"y\":0,\"i\":\"dd4e33c8-dfda-4cdb-90fc-80b5e7592cd1\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-21T14:28:18.1322638",
+                    "lastModifiedTimestamp": "2024-03-24T21:06:27.1457582",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "a47cdf1e-b4ee-4950-bf56-2532108da06d",
+                    "name": "Fresh Food Chillers",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-02-02T14:14:40.070742",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": null
+                },
+                {
+                    "id": "a797b69c-e8b6-4f77-bf34-15e7ee7ca371",
+                    "name": "Weather Stations",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-21T14:22:35.6731837",
+                    "lastModifiedTimestamp": "2024-01-29T20:54:28.6056591",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "b430da77-776f-43c3-b0fe-583ff174957e",
+                    "name": "My Garage",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"1e4562fb-b5c5-44b1-8f4c-4a5cdc735b6b\",\"component\":\"value\",\"title\":\"Hello1\",\"headline\":\"Hello1headline\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":5,\"h\":3,\"x\":0,\"y\":0,\"i\":\"1e4562fb-b5c5-44b1-8f4c-4a5cdc735b6b\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-24T21:15:19.0560008",
+                    "lastModifiedTimestamp": "2024-02-10T15:28:31.7650185",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "d65e5a18-b053-41ec-a755-7193d9c54ee4",
+                    "name": "Lighting Controls",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"09eb91b7-c5ab-47a5-88ac-cd16aca0a3f4\",\"component\":\"value\",\"title\":\"Living Room\",\"headline\":\"Current Livingroom Temperature\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":5,\"h\":3,\"x\":0,\"y\":0,\"i\":\"09eb91b7-c5ab-47a5-88ac-cd16aca0a3f4\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-20T14:00:43.0908488",
+                    "lastModifiedTimestamp": "2024-02-10T20:16:44.3419586",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "dc1ebf91-742a-4211-894f-4ea50a7f9df7",
+                    "name": "River Level Monitors",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": "[{\"_uid\":\"8a00f2df-8f58-4891-a854-387d4ef3416a\",\"component\":\"value\",\"title\":\"Flow Rate\",\"headline\":\"Instantaneous gas flow rate\"}]",
+                    "gridLayout": "{\"lg\":[{\"w\":5,\"h\":3,\"x\":0,\"y\":0,\"i\":\"8a00f2df-8f58-4891-a854-387d4ef3416a\",\"minW\":2,\"minH\":3,\"moved\":false,\"static\":false}]}",
+                    "createdTimestamp": "2024-01-21T14:24:17.3103702",
+                    "lastModifiedTimestamp": "2024-02-10T15:36:54.640197",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "e2087213-db4e-48a3-b650-7df6daaccfa4",
+                    "name": "Traffic Management",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-21T14:36:04.1265042",
+                    "lastModifiedTimestamp": "2024-01-29T20:41:31.5909117",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "e4e2637c-bc50-4b56-b88d-c0a050e0e35e",
+                    "name": "Battery Storage Array",
+                    "workspaceId": "7dd3a8f6-cc62-4293-84b1-d5e1d5d94211",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-19T16:44:53.9440129",
+                    "lastModifiedTimestamp": "2024-01-29T20:44:11.7698884",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                }
+            ],
+            "devices": [
+                {
+                    "id": "187243579",
+                    "name": "Neil Python IoT",
+                    "fields": "[{\"id\":1,\"name\":\"Temperature\",\"identifier\":\"ambTemp\",\"type\":\"Float\",\"unit\":\"degC\"},{\"id\":2,\"name\":\"Average Current\",\"identifier\":\"avgCurr\",\"type\":\"integer\",\"unit\":\"Celcius\"},{\"id\":3,\"name\":\"L1 Voltage\",\"identifier\":\"voltsL1\",\"type\":\"integer\",\"unit\":\"mV\"}]",
+                    "createdTimestamp": "2024-03-18T17:10:04.4189527",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "a0dd767b-908d-42de-84f5-b55a68920a04",
+                    "modifiedById": null
+                }
+            ],
+            "createdTimestamp": "2024-01-19T16:38:17.5299134",
+            "lastModifiedTimestamp": "0001-01-01T00:00:00",
+            "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+            "modifiedById": null
+        },
+        {
+            "id": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+            "name": "Mollys WS",
+            "deviceCount": 0,
+            "userCount": 1,
+            "tenantId": "b8b0ad52-099d-4701-93ee-e3040f623fc1",
+            "dashboards": [
+                {
+                    "id": "19fa9e2a-cd58-4d08-a3f5-e7f12d43a84d",
+                    "name": "HVAC Systems",
+                    "workspaceId": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-14T13:37:26.3300874",
+                    "lastModifiedTimestamp": "2024-01-24T13:19:56.7413523",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "3ee1f036-7c7a-4215-81c6-879e2ab7ddd1",
+                    "name": "Backup Generators",
+                    "workspaceId": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-14T13:26:00.3846218",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": null
+                },
+                {
+                    "id": "64c1d001-eef4-47e3-a24f-347144487ab6",
+                    "name": "Datacenter cooling",
+                    "workspaceId": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-21T15:00:21.8845573",
+                    "lastModifiedTimestamp": "2024-01-22T21:34:57.5409982",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c"
+                },
+                {
+                    "id": "711f6d96-1458-4361-93b3-9916c2440572",
+                    "name": "IoT Systems",
+                    "workspaceId": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-14T19:09:15.55629",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": null
+                },
+                {
+                    "id": "810f2eaf-2a74-40d7-abe8-f051b9dc75ee",
+                    "name": "Refrigeration Units",
+                    "workspaceId": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-14T19:03:55.2668317",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": null
+                },
+                {
+                    "id": "8ba902f0-ae21-472c-948d-f21d0cc9aed6",
+                    "name": "My Devices",
+                    "workspaceId": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-14T08:28:39.8764093",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": null
+                },
+                {
+                    "id": "a58ed204-2ca9-4f28-b1d1-96b07c895965",
+                    "name": "Vehicle Fleet",
+                    "workspaceId": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-14T08:44:21.7082014",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": null
+                },
+                {
+                    "id": "ec362f96-5c74-4923-85be-e448809220f4",
+                    "name": "Gas Volumes",
+                    "workspaceId": "8ebd4952-d959-4418-8bc1-954e786ff1cf",
+                    "gridWidgets": null,
+                    "gridLayout": null,
+                    "createdTimestamp": "2024-01-21T14:59:16.0584738",
+                    "lastModifiedTimestamp": "0001-01-01T00:00:00",
+                    "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+                    "modifiedById": null
+                }
+            ],
+            "devices": [],
+            "createdTimestamp": "2024-01-07T19:49:41.8938765",
+            "lastModifiedTimestamp": "0001-01-01T00:00:00",
+            "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+            "modifiedById": null
+        },
+        {
+            "id": "bc62c5eb-9712-437c-bc4b-ca908c2ea51f",
+            "name": "My Home",
+            "deviceCount": 0,
+            "userCount": 1,
+            "tenantId": "b8b0ad52-099d-4701-93ee-e3040f623fc1",
+            "dashboards": [],
+            "devices": [],
+            "createdTimestamp": "2024-01-24T21:13:32.9738365",
+            "lastModifiedTimestamp": "0001-01-01T00:00:00",
+            "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+            "modifiedById": null
+        },
+        {
+            "id": "897e461e-de09-407c-b5eb-7ac0bb23187e",
+            "name": "New Workspace",
+            "deviceCount": 0,
+            "userCount": 1,
+            "tenantId": "b8b0ad52-099d-4701-93ee-e3040f623fc1",
+            "dashboards": [],
+            "devices": [],
+            "createdTimestamp": "2024-02-02T14:24:53.7597004",
+            "lastModifiedTimestamp": "0001-01-01T00:00:00",
+            "ownerId": "7be8eaba-5707-4fb3-8eb5-74c07822ad2c",
+            "modifiedById": null
+        }
+    ]
+}

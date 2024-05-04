@@ -33,6 +33,9 @@ const AddWidgetModal = ({ addWidget }) => {
                 <span className="text-2xl block float-left">
                     <RiAddFill />
                 </span>
+                <span className="text-base font-medium flex-1 duration-200">
+                    Add Widget
+                </span>
             </li>
             <CustomModal visible={showModal} onClose={() => setShowModal(false)}>
                 <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed outline-none focus:outline-none">

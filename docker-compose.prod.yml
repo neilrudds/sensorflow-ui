@@ -13,6 +13,7 @@ services:
     image: '${NGINX_IMAGE}'
     ports:
       - '80:80'
+      - '443:443'
     volumes:
       - website:/usr/share/nginx/html/website # Copy React App's build files to the Nginx directory
 

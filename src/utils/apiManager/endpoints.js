@@ -1,3 +1,5 @@
+// ENDPOINTS object which contains all of the available API Endpoints
+// including parameters which are formatted to suitable query strings
 const ENDPOINTS = {
     CREATE_DASHBOARD: () =>
     '/Dashboards',

@@ -56,9 +56,9 @@ const Grid = (props) => {
                 console.error('Connection error: ', err);
                 client.end();
             });
-            client.on('reconnect', () => {
+            /*client.on('reconnect', () => {
                 setConnectStatus('Reconnecting');
-            });
+            });*/
             client.on('message', (topic, message) => {
                 const payload = { topic, message: message.toString() }
                 setPayload(payload)
@@ -91,6 +91,9 @@ const Grid = (props) => {
         }
       }
 
+    // When the grid props change, retrieve the dashboard grid layout from the backend database
+    // and store it locally in state. Retrieve the widgets too. The current dashboard will then be
+    // presented as per the users last configuration.
     useEffect(() => {
         getDashboard(props.dashboardId)
             .then((res) => {
@@ -108,6 +111,9 @@ const Grid = (props) => {
             })
     }, [props]);
 
+    // When the user changes the layout, the onLayoutChange function is called. The layout state will be stored
+    // and the layout will be converted to a JSON string and passed to the API services to be persisted with the
+    // database configuration
     const onLayoutChange = (_, allLayouts) => {
         setLayouts(allLayouts);
         const params = { gridWidgets: JSON.stringify(widgets), gridLayout: JSON.stringify(allLayouts) };
@@ -123,29 +129,34 @@ const Grid = (props) => {
     };
 
     const getWidgetCoordinates = (wd) => {
+        // get the current grid position
         const { col, row, height } = currGridPos;
 
+        // based on a grid of 12 columns, calculate if the new widget will fit on the row
         let x = (col + wd.minW > 12 ? 0 : col % 12);
         let y = row;
 
+        // if it fits, update the grid position
         if (x === 0) {
             y += wd.minH;
-            setCurrGridPos({ ...currGridPos, height: wd.minH });
+            setCurrGridPos({ ...currGridPos, height: wd.minH }); // Save in state
         } else {
+            // if it does not fit, move to a new row and update the grid position
             if (wd.minH > height) {
                 y += (wd.minH - height);
-                setCurrGridPos({ ...currGridPos, height: wd.minH });
+                setCurrGridPos({ ...currGridPos, height: wd.minH }); // Save in state
             }
         }
-        setCurrGridPos({ ...currGridPos, col: x + wd.minW, row: y });
+        setCurrGridPos({ ...currGridPos, col: x + wd.minW, row: y }); // Save in state
 
         return { x, y };
     }
 
     const onAddWidget = (widget) => {
-        // Get the type boundaries
+        // Get the type boundaries i.e. max and min sizes of a widget type
         const wd = widgetDefaults.filter(c => c.component === widget.component)[0];
 
+        // Create an object which defined the widgets position and dimensions
         const { x, y } = getWidgetCoordinates(wd);
         const newLayout = {
             i: widget._uid,
@@ -157,6 +168,7 @@ const Grid = (props) => {
             minH: wd.minH
         };
 
+        // Add the new widget to state and update the layout
         console.log("Adding widget: " + JSON.stringify(widget));
         setWidgets([...widgets, widget]);
         setLayouts({
@@ -168,12 +180,17 @@ const Grid = (props) => {
 
     return (
         <>
-            <p>{connectStatus ? "Live data" : "Unable to connect to server"}</p>
+            {/* Use a tenary to display the connection status to the MQTT broker from state*/}
+            <p>{connectStatus === 'Connected' ? "Live data" : "Unable to connect to server"}</p>
+            <p>{connectStatus}</p>
             <span className="relative flex h-2 w-2">
-                <span className={`${connectStatus ? ("animate-ping bg-sky-400") : ("bg-orange-400")} absolute inline-flex h-full w-full rounded-full opacity-75`}></span>
+                <span className={`${connectStatus === 'Connected' ? ("animate-ping bg-sky-400") : ("bg-orange-400")} absolute inline-flex h-full w-full rounded-full opacity-75`}></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
             </span>
+            {/* Add widget component */}
             <AddWidgetModal addWidget={onAddWidget} />
+            {/* If the number of widget objects in the widgets array is greater than zero, display the ResponsiveGridLayout component,
+                 otherwise display a message to the user, advising that they should add widgets to get started */}
             {widgets.length > 0 ?
                 <ResponsiveGridLayout
                     className="layout"
@@ -184,6 +201,7 @@ const Grid = (props) => {
                     onLayoutChange={onLayoutChange}
                     draggableCancel=".cancelDraggable"
                 >
+                    { /* Using the map function, populate the grid with the widgets from the widget array */}
                     {widgets.map((w) => (
                         <div
                             key={w._uid}

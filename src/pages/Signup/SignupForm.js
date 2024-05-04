@@ -70,7 +70,7 @@ export default function SignupForm() {
             <div className="flex items-center justify-center h-screen">
                 <form className="space-y-6 shadow-md rounded px-8 pt-6 pb-8 mb-4 bg-white" onSubmit={handleSubmit}>
                 { errorMessage &&
-                 <h3 className="error"> { errorMessage } </h3>
+                 <h3 className="text-red-500"> { errorMessage } </h3>
                 }
                 { postId && 
                  <h3 className="success">User account created sucessfully!</h3>

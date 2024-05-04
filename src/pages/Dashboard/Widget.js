@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import Components from "./components";
 import useMQTTSubscribe from '../../hooks/useMQTTSubscribe'
 
+/* The widget components require a widget object, which detail the configuration of the widget,
+  the wsClient is a reference to the current MQTT WebSocket Client instance, the onRemoveItem parameter is a 
+  callback function to delete the widget from the dashboard */
 export default function Widget({ widget, wsClient, onRemoveItem }) {
   const [message, setMessage] = useState("");
+  /* Subscribe the widget to the required topic to recieve relevant widget values, the message will be stored in 
+    the message variable in state as the setMessage function will be called through the useMQTTSubscribe callback() */
   useMQTTSubscribe(wsClient, (widget.topicSerial + "/" + widget.topicIdentifier), setMessage);
   
   return (
@@ -16,6 +21,7 @@ export default function Widget({ widget, wsClient, onRemoveItem }) {
         X
       </button>
       <div className="p-6">
+        {/* Render the component based on the component type and the MQTT payload */}
         {Components(widget, message)}
       </div>
     </div>

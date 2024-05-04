@@ -1,3 +1,5 @@
+// Code Credits: https://dev.to/miracool/how-to-manage-user-authentication-with-react-js-3ic5
+
 import { useContext } from "react";
 import { useLocation, Navigate} from "react-router-dom";
 import AuthContext from "../context/auth-context";

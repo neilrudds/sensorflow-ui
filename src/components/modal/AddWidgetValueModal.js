@@ -3,6 +3,7 @@ import CustomModal from "./Modal";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { apiDevice } from '../../utils/apiManager/apiDevice';
 import WorkspaceContext from "../../context/workspace-context";
+import { nanoid } from 'nanoid';
 
 export default function AddWidgetValueModal({ open, onClose, addWidget }) {
   const { workspace } = useContext(WorkspaceContext);
@@ -57,7 +58,7 @@ export default function AddWidgetValueModal({ open, onClose, addWidget }) {
 
     // Add the widget to the dashboard
     const newWidget = {
-      _uid: crypto.randomUUID(),
+      _uid: nanoid(),
       component: "value",
       title: name,
       headline: subheading,

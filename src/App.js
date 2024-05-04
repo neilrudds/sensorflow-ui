@@ -1,6 +1,5 @@
 import Root from './components/ui/Root';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
-
 import WorkspaceContent from './components/ui/WorkspaceContent';
 import Dashboard from './pages/Dashboard/index'
 import Index from './components/ui/Index';
@@ -17,6 +16,11 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
+      /* By encapsulating the Root component in the RequireAuth component
+       we can ensure that a user is authenticated against the system first.
+       Note; Being authenticated does not mean that they are authorised to
+       access a resource.
+      */
       <RequireAuth>
         <Root />
       </RequireAuth>
@@ -68,10 +72,12 @@ const router = createBrowserRouter([
     ]
   },
   {
+    // Publically accessable componenent required for signup
     path: "/signup",
     element: <SignupPage />
   },
   {
+    // Publically accessable componenent required for authentication
     path: "/login",
     element: <LoginPage />
   }
@@ -79,6 +85,10 @@ const router = createBrowserRouter([
 
 const App = () => {
 
+  // Encapsulating the RouterProvider in the AuthProvider ensures that,
+  // user AuthContext can be accessed by any child component.
+  // Encapsulating the RouterProvider in the WorkspaceProvider ensures that,
+  // the WorkspaceContext can be accessed by any child component.
   return (
     <StrictMode>
       <AuthProvider>

@@ -2,6 +2,9 @@ import { config } from './Constants'
 
 const BASE_URL = config.url.API_URL_LOGIN;
 
+// AuthProvider will perform API request to the backend signin service
+// the response will then be stored in the user object along with the resulting user
+// authentication status
 const authProvider = {
     isAuthenticated: false,
     user: null,
@@ -26,7 +29,6 @@ const authProvider = {
                 const error = data || response.status;
                 return Promise.reject(error);
             }
-            //localStorage.setItem("user", JSON.stringify(data));
             authProvider.isAuthenticated = true;
             authProvider.user = JSON.stringify(data);
             callback();
@@ -38,7 +40,6 @@ const authProvider = {
     },
     signout(callback) {
       authProvider.isAuthenticated = false;
-      //localStorage.removeItem("user");
       callback();
     }
   };

@@ -12,4 +12,5 @@ const dev = {
         MQTT_WS_URL: 'ws://ec2-44-206-138-226.compute-1.amazonaws.com:8000/mqtt'
     }
 };
+// Use a ternary operator to return the correct URL object based on the current environment
 export const config = process.env.NODE_ENV === 'development' ? dev : prod;
