@@ -181,12 +181,11 @@ const Grid = (props) => {
     return (
         <>
             {/* Use a tenary to display the connection status to the MQTT broker from state*/}
-            <p>{connectStatus === 'Connected' ? "Live data" : "Unable to connect to server"}</p>
-            <p>{connectStatus}</p>
             <span className="relative flex h-2 w-2">
                 <span className={`${connectStatus === 'Connected' ? ("animate-ping bg-sky-400") : ("bg-orange-400")} absolute inline-flex h-full w-full rounded-full opacity-75`}></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500"></span>
             </span>
+            <p>{connectStatus === 'Connected' ? "Connected" : "Unable to connect to server"}</p>
             {/* Add widget component */}
             <AddWidgetModal addWidget={onAddWidget} />
             {/* If the number of widget objects in the widgets array is greater than zero, display the ResponsiveGridLayout component,

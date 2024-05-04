@@ -30,11 +30,9 @@ export default function Root() {
   }, []);
 
   const Menus = [
-    { title: "Reports", icon: <BsFillImageFill /> },
     { title: "Members", icon: <AiOutlineBarChart /> },
     { title: "Workspace", icon: <AiOutlineMail /> },
     { title: "Profile", spacing: true, icon: <BsPerson /> },
-    { title: "Setting", icon: <AiOutlineSetting /> },
     { title: "Logout", icon: <AiOutlineLogout /> },
   ];
 
