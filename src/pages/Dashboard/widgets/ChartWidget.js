@@ -3,16 +3,16 @@ import Chart from "react-apexcharts";
 
 export default function ChartWidget(props) {
   const [data, setData] = useState([
-    { x: Date.now(), y: 0 },
-    { x: Date.now(), y: 0 }, 
-    { x: Date.now(), y: 0 }, 
-    { x: Date.now(), y: 0 }, 
-    { x: Date.now(), y: 0 },
-    { x: Date.now(), y: 0 }, 
-    { x: Date.now(), y: 0 }, 
-    { x: Date.now(), y: 0 }, 
-    { x: Date.now(), y: 0 }, 
-    { x: Date.now(), y: 0 }
+    { x: Date.now(), y: 0.0 },
+    { x: Date.now(), y: 0.0 }, 
+    { x: Date.now(), y: 0.0 }, 
+    { x: Date.now(), y: 0.0 }, 
+    { x: Date.now(), y: 0.0 },
+    { x: Date.now(), y: 0.0 }, 
+    { x: Date.now(), y: 0.0 }, 
+    { x: Date.now(), y: 0.0 }, 
+    { x: Date.now(), y: 0.0 }, 
+    { x: Date.now(), y: 0.0 }
   ]);
   
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function ChartWidget(props) {
         }
       },
       animations: {
-        enabled: true,
+        enabled: false,
         easing: "linear",
         dynamicAnimation: {
           speed: 1000

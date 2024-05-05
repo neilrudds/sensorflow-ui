@@ -65,8 +65,7 @@ const AddDeviceModal = ({ onAdd }) => {
         setFormData(formData => ({ ...formData, [id]: value }));
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+    const handleSubmit = async () => {
         // Reset errors
         setPostId(null); setErrorMessage(null);
 
@@ -86,7 +85,7 @@ const AddDeviceModal = ({ onAdd }) => {
                     setPostId(res.Id);
                 })
             onAdd();
-            setShowModal(false);
+            //setShowModal(false);
         } catch (error) {
             setErrorMessage(error.toString());
             console.error('There was an error; ', error);
@@ -114,63 +113,150 @@ const AddDeviceModal = ({ onAdd }) => {
                             <div className="bg-dark-purple px-4 py-3 sm:px-6">
                                 <h1 className="text-lg text-gray-300 font-bold mt-2 pr-48">Add Device</h1>
                             </div>
-                            <form onSubmit={handleSubmit}>
-                                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                                    <div className="sm:flex sm:items-start">
-                                        <div className="text-center sm:mt-0">
-                                            {errorMessage &&
-                                                <h3 className="text-red-500"> {errorMessage} </h3>
-                                            }
-                                            <Tabs selectedTabClassName="me-2 inline-block p-4 border-b-2 border-blue-500 text-blue-600">
-                                                <TabList className="flex flex-wrap -mb-px text-sm font-medium text-center border-b border-gray-200">
-                                                    <Tab className="me-2 inline-block p-4 cursor-pointer hover:border-b-2">Basic</Tab>
-                                                    <Tab className="me-2 inline-block p-4 cursor-pointer hover:border-b-2">Data</Tab>
-                                                    <Tab className="me-2 inline-block p-4 cursor-pointer hover:border-b-2">MQTT Configuration</Tab>
-                                                </TabList>
-                                                <TabPanel className="space-y-6 mt-6">
-                                                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                                                        You can add one device at a time. Serial numbers are used to identify devices when ingesting data. You can provide your own or let us auto-generate one. It can't be changed later.</p>
-                                                    <div className="space-y-3">
-                                                        <div className="flex flex-col">
-                                                            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                                                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                                                    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                                                        <table className="min-w-full divide-y divide-gray-200">
-                                                                            <thead className="bg-gray-50">
-                                                                                <tr>
-                                                                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
-                                                                                        <div className="flex space-x-2">
-                                                                                            <span>Serial Number</span>
+                            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div className="sm:flex sm:items-start">
+                                    <div className="text-center sm:mt-0">
+                                        {errorMessage &&
+                                            <h3 className="text-red-500"> {errorMessage} </h3>
+                                        }
+                                        <Tabs selectedTabClassName="me-2 inline-block p-4 border-b-2 border-blue-500 text-blue-600">
+                                            <TabList className="flex flex-wrap -mb-px text-sm font-medium text-center border-b border-gray-200">
+                                                <Tab className="me-2 inline-block p-4 cursor-pointer hover:border-b-2">Basic</Tab>
+                                                <Tab className="me-2 inline-block p-4 cursor-pointer hover:border-b-2">Data</Tab>
+                                                <Tab className="me-2 inline-block p-4 cursor-pointer hover:border-b-2">MQTT Configuration</Tab>
+                                            </TabList>
+                                            <TabPanel className="space-y-6 mt-6">
+                                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                                    You can add one device at a time. Serial numbers are used to identify devices when ingesting data. You can provide your own or let us auto-generate one. It can't be changed later.</p>
+                                                <div className="space-y-3">
+                                                    <div className="flex flex-col">
+                                                        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                                            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                                                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                                                    <table className="min-w-full divide-y divide-gray-200">
+                                                                        <thead className="bg-gray-50">
+                                                                            <tr>
+                                                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
+                                                                                    <div className="flex space-x-2">
+                                                                                        <span>Serial Number</span>
+                                                                                    </div>
+                                                                                </th>
+                                                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
+                                                                                    <div className="flex space-x-2">
+                                                                                        <span>Name</span>
+                                                                                    </div>
+                                                                                </th>
+                                                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
+                                                                                    <div className="flex space-x-2">
+                                                                                        <span>Location</span>
+                                                                                    </div>
+                                                                                </th>
+                                                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 pt-4">
+                                                                                    <div className="flex space-x-2">
+                                                                                    </div>
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody className="bg-white divide-y divide-gray-200">
+                                                                            <tr>
+                                                                                <td className="px-6 py-4 whitespace-nowrap align-top">
+                                                                                    <div className="nobulma">
+                                                                                        <div className="false flex rounded-md shadow-sm">
+                                                                                            <div className="relative flex items-stretch flex-grow focus-within:z-10">
+                                                                                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                                                                    <RiFingerprintFill />
+                                                                                                </div>
+                                                                                                <input type="text" id="serial" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false font-mono tracking-tighter" autocomplete="off" placeholder="Auto-Generate" onChange={handleChange} />
+                                                                                                <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                                                                    <span></span>
+                                                                                                </div>
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
-                                                                                        <div className="flex space-x-2">
-                                                                                            <span>Name</span>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td className="px-6 py-4 whitespace-nowrap align-top">
+                                                                                    <div className="nobulma">
+                                                                                        <div className="false flex rounded-md shadow-sm">
+                                                                                            <div className="relative flex items-stretch flex-grow focus-within:z-10">
+                                                                                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                                                                    <RiPassPendingLine />
+                                                                                                </div>
+                                                                                                <input type="text" id="name" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false" autocomplete="off" placeholder="Name" onChange={handleChange} required="true" />
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
-                                                                                        <div className="flex space-x-2">
-                                                                                            <span>Location</span>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td className="px-6 py-4 whitespace-nowrap align-top">
+                                                                                    <div className="nobulma">
+                                                                                        <div className="false flex rounded-md shadow-sm">
+                                                                                            <div className="relative flex items-stretch flex-grow focus-within:z-10">
+                                                                                                <input type="text" id="location" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" autocomplete="off" placeholder="Location" onChange={handleChange} required="true" />
+                                                                                            </div>
                                                                                         </div>
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 pt-4">
-                                                                                        <div className="flex space-x-2">
-                                                                                        </div>
-                                                                                    </th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody className="bg-white divide-y divide-gray-200">
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </TabPanel>
+                                            <TabPanel className="space-y-6 mt-6">
+                                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                                    Fields describe the data the device will publish.</p>
+                                                <button onClick={createField}>
+                                                    <span className="text-2xl block float-left">
+                                                        <RiAddFill />
+                                                    </span>
+                                                    <span className="text-base font-medium flex-1 duration-200">
+                                                        Add Field
+                                                    </span>
+                                                </button>
+                                                <div className="space-y-3">
+                                                    <div className="flex flex-col">
+                                                        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                                            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                                                <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                                                                    <table className="min-w-full divide-y divide-gray-200">
+                                                                        <thead className="bg-gray-50">
+                                                                            <tr>
+                                                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
+                                                                                    <div className="flex space-x-2">
+                                                                                        <span>Name</span>
+                                                                                    </div>
+                                                                                </th>
+                                                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
+                                                                                    <div className="flex space-x-2">
+                                                                                        <span>Identifier</span>
+                                                                                    </div>
+                                                                                </th>
+                                                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
+                                                                                    <div className="flex space-x-2">
+                                                                                        <span>Type</span>
+                                                                                    </div>
+                                                                                </th>
+                                                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 pt-4">
+                                                                                    <div className="flex space-x-2">
+                                                                                        <span>Unit</span>
+                                                                                    </div>
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody className="bg-white divide-y divide-gray-200">
+                                                                            {fields.map((row, i) => (
                                                                                 <tr>
                                                                                     <td className="px-6 py-4 whitespace-nowrap align-top">
                                                                                         <div className="nobulma">
                                                                                             <div className="false flex rounded-md shadow-sm">
                                                                                                 <div className="relative flex items-stretch flex-grow focus-within:z-10">
                                                                                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                                                                        <RiFingerprintFill />
+                                                                                                        <RiPriceTag3Line />
                                                                                                     </div>
-                                                                                                    <input type="text" id="serial" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false font-mono tracking-tighter" autocomplete="off" placeholder="Auto-Generate" onChange={handleChange} />
+                                                                                                    <input type="text" id="name" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false font-mono tracking-tighter" autocomplete="off" placeholder="Name" onChange={(e) => handleFieldChange(e, i)} />
                                                                                                     <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                                                                                        <span></span>
                                                                                                     </div>
                                                                                                 </div>
                                                                                             </div>
@@ -181,9 +267,9 @@ const AddDeviceModal = ({ onAdd }) => {
                                                                                             <div className="false flex rounded-md shadow-sm">
                                                                                                 <div className="relative flex items-stretch flex-grow focus-within:z-10">
                                                                                                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                                                                        <RiPassPendingLine />
+                                                                                                        <RiHashtag />
                                                                                                     </div>
-                                                                                                    <input type="text" id="name" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false" autocomplete="off" placeholder="Name" onChange={handleChange} required="true" />
+                                                                                                    <input type="text" id="identifier" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false" autocomplete="off" placeholder="Identifier" onChange={(e) => handleFieldChange(e, i)} />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -192,154 +278,65 @@ const AddDeviceModal = ({ onAdd }) => {
                                                                                         <div className="nobulma">
                                                                                             <div className="false flex rounded-md shadow-sm">
                                                                                                 <div className="relative flex items-stretch flex-grow focus-within:z-10">
-                                                                                                    <input type="text" id="location" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" autocomplete="off" placeholder="Location" onChange={handleChange} required="true" />
+                                                                                                    <select id="type" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" placeholder="Type" onChange={(e) => handleFieldChange(e, i)} >
+                                                                                                        <option value="float">
+                                                                                                            Float
+                                                                                                        </option>
+                                                                                                        <option value="integer">
+                                                                                                            Integer
+                                                                                                        </option>
+                                                                                                        <option value="boolean">
+                                                                                                            Boolean
+                                                                                                        </option>
+                                                                                                        <option value="string">
+                                                                                                            String
+                                                                                                        </option>
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td className="px-6 py-4 whitespace-nowrap align-top">
+                                                                                        <div className="nobulma">
+                                                                                            <div className="false flex rounded-md shadow-sm">
+                                                                                                <div className="relative flex items-stretch flex-grow focus-within:z-10">
+                                                                                                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                                                                                        <RiFahrenheitFill />
+                                                                                                    </div>
+                                                                                                    <input type="text" id="unit" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false" autocomplete="off" placeholder="Unit" onChange={(e) => handleFieldChange(e, i)} />
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>
                                                                                 </tr>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
+                                                                            ))}
+                                                                        </tbody>
+                                                                    </table>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </TabPanel>
-                                                <TabPanel className="space-y-6 mt-6">
-                                                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                                                        Fields describe the data the device will publish.</p>
-                                                    <button onClick={createField}>
-                                                        <span className="text-2xl block float-left">
-                                                            <RiAddFill />
-                                                        </span>
-                                                        <span className="text-base font-medium flex-1 duration-200">
-                                                            Add Field
-                                                        </span>
-                                                    </button>
-                                                    <div className="space-y-3">
-                                                        <div className="flex flex-col">
-                                                            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                                                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                                                    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                                                                        <table className="min-w-full divide-y divide-gray-200">
-                                                                            <thead className="bg-gray-50">
-                                                                                <tr>
-                                                                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
-                                                                                        <div className="flex space-x-2">
-                                                                                            <span>Name</span>
-                                                                                        </div>
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
-                                                                                        <div className="flex space-x-2">
-                                                                                            <span>Identifier</span>
-                                                                                        </div>
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 py-0">
-                                                                                        <div className="flex space-x-2">
-                                                                                            <span>Type</span>
-                                                                                        </div>
-                                                                                    </th>
-                                                                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider group px-0 pt-4">
-                                                                                        <div className="flex space-x-2">
-                                                                                            <span>Unit</span>
-                                                                                        </div>
-                                                                                    </th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody className="bg-white divide-y divide-gray-200">
-                                                                                {fields.map((row, i) => (
-                                                                                    <tr>
-                                                                                        <td className="px-6 py-4 whitespace-nowrap align-top">
-                                                                                            <div className="nobulma">
-                                                                                                <div className="false flex rounded-md shadow-sm">
-                                                                                                    <div className="relative flex items-stretch flex-grow focus-within:z-10">
-                                                                                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                                                                            <RiPriceTag3Line />
-                                                                                                        </div>
-                                                                                                        <input type="text" id="name" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false font-mono tracking-tighter" autocomplete="off" placeholder="Name" onChange={(e) => handleFieldChange(e, i)} />
-                                                                                                        <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td className="px-6 py-4 whitespace-nowrap align-top">
-                                                                                            <div className="nobulma">
-                                                                                                <div className="false flex rounded-md shadow-sm">
-                                                                                                    <div className="relative flex items-stretch flex-grow focus-within:z-10">
-                                                                                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                                                                            <RiHashtag />
-                                                                                                        </div>
-                                                                                                        <input type="text" id="identifier" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false" autocomplete="off" placeholder="Identifier" onChange={(e) => handleFieldChange(e, i)} />
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td className="px-6 py-4 whitespace-nowrap align-top">
-                                                                                            <div className="nobulma">
-                                                                                                <div className="false flex rounded-md shadow-sm">
-                                                                                                    <div className="relative flex items-stretch flex-grow focus-within:z-10">
-                                                                                                        <select id="type" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" placeholder="Type" onChange={(e) => handleFieldChange(e, i)} >
-                                                                                                            <option value="float">
-                                                                                                                Float
-                                                                                                            </option>
-                                                                                                            <option value="integer">
-                                                                                                                Integer
-                                                                                                            </option>
-                                                                                                            <option value="boolean">
-                                                                                                                Boolean
-                                                                                                            </option>
-                                                                                                            <option value="string">
-                                                                                                                String
-                                                                                                            </option>
-                                                                                                        </select>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                        <td className="px-6 py-4 whitespace-nowrap align-top">
-                                                                                            <div className="nobulma">
-                                                                                                <div className="false flex rounded-md shadow-sm">
-                                                                                                    <div className="relative flex items-stretch flex-grow focus-within:z-10">
-                                                                                                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                                                                                            <RiFahrenheitFill />
-                                                                                                        </div>
-                                                                                                        <input type="text" id="unit" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md pl-10 false" autocomplete="off" placeholder="Unit" onChange={(e) => handleFieldChange(e, i)} />
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                ))}
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </TabPanel>
-                                                <TabPanel className="space-y-6 mt-6">
-                                                    <p className="text-sm text-gray-500 dark:text-gray-400">
-                                                        The MQTT integration allows you to connect to an external MQTT broker.</p>
-                                                    <div className="space-y-3">
-                                                        <div className="flex flex-col">
-                                                            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                                                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                                                                    <div className="space-y-12">
-                                                                        <div>
-                                                                            <div class="flex justify-between">
-                                                                                <label class="text-sm text-gray-700 font-medium">MQTT Server</label>
-                                                                            </div>
-                                                                            <div class="flex items-center space-x-4">
-                                                                                <div class="flex-grow">
-                                                                                    <div class="mt-1 relative">
-                                                                                        <select id="type" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" placeholder="Type" value={selectedGateway} onChange={(e) => setSelectedGateway(e.target.value)} >
-                                                                                            <option value=""></option>
-                                                                                            {gateways.map((gateway) => <option value={gateway.id}>{gateway.name}</option>)}
-                                                                                        </select>
-                                                                                    </div>
+                                                </div>
+                                            </TabPanel>
+                                            <TabPanel className="space-y-6 mt-6">
+                                                <p className="text-sm text-gray-500 dark:text-gray-400">
+                                                    The MQTT integration allows you to connect to an external MQTT broker.</p>
+                                                <div className="space-y-3">
+                                                    <div className="flex flex-col">
+                                                        <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                                            <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                                                                <div className="space-y-12">
+                                                                    <div>
+                                                                        <div class="flex justify-between">
+                                                                            <label class="text-sm text-gray-700 font-medium">MQTT Server</label>
+                                                                        </div>
+                                                                        <div class="flex items-center space-x-4">
+                                                                            <div class="flex-grow">
+                                                                                <div class="mt-1 relative">
+                                                                                    <select id="type" className="focus:ring-0 block w-full sm:text-sm border-gray-300 focus:border-gray-500 rounded-none rounded-r-md rounded-l-md false false" placeholder="Type" value={selectedGateway} onChange={(e) => setSelectedGateway(e.target.value)} >
+                                                                                        <option value=""></option>
+                                                                                        {gateways.map((gateway) => <option value={gateway.id}>{gateway.name}</option>)}
+                                                                                    </select>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -348,21 +345,22 @@ const AddDeviceModal = ({ onAdd }) => {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </TabPanel>
-                                            </Tabs>
-                                        </div>                               
+                                                </div>
+                                            </TabPanel>
+                                        </Tabs>
                                     </div>
                                 </div>
-                                <div className="px-2 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                    <button
-                                        type="submit"
-                                        className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-dark-purple text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                        onSubmit={() => handleSubmit()}
-                                    >
-                                        Save
-                                    </button>
-                                </div>
-                            </form>
+                            </div>
+                            <div className="px-2 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                <button
+                                    type="button"
+                                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-dark-purple text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                                    onClick={() => handleSubmit()}
+                                >
+                                    Save
+                                </button>
+                            </div>
+
                         </div>
                     </div>
                 </div>

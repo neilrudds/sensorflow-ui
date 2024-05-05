@@ -99,9 +99,9 @@ export default function AddChartValueModal({ open, onClose, addWidget }) {
                             name="name"
                             type="text"
                             onChange={handleChange}
-                            required
+                            required = "true"
                             className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
-                            placeholder="New Value Widget"
+                            placeholder="e.g. Living Room Temp"
                           />
                         </div>
                         <div>
@@ -113,15 +113,15 @@ export default function AddChartValueModal({ open, onClose, addWidget }) {
                             name="subheading"
                             type="text"
                             onChange={handleChange}
-                            required
+                            required = "true"
                             className="rounded-md appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm"
-                            placeholder="Current room temperature"
+                            placeholder="e.g. Current Living Room Temperature"
                           />
                         </div>
                       </TabPanel>
                       <TabPanel className="space-y-6 mt-6">
                         <p className="text-sm text-gray-500 dark:text-gray-400">
-                          This is some placeholder content the <strong className="font-medium text-gray-800 dark:text-white">Data tab's associated content</strong>. Clicking another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control the content visibility and styling.
+                         In the list below, you must select the source of your data for the widget. Start by selecting the device which will be publishing the data, then select the topic/field from the device as your data source.
                         </p>
                         <div className="field">
                           <label>Source</label>
