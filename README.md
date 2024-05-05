@@ -26,34 +26,34 @@ Visual Studio Code is recommended for opening the main solution directory for th
 The solution consists of the following directories and sub-directories:
 
 └── 📁public – \\ Public root div element where all content is to be rendered
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── index.html
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── robots.txt
+	└── index.html
+    └── robots.txt
 └── 📁src \\ Main application code
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── App.js \\ Main React Application Component
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁assets \\ Static items such as images, css, fonts etc.
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁components \\ Individual components organised by type
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁form \\ User form components for user input
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── 📁modal \\ Pop-Up modals
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁ui \\ Small UI components common throughout the application
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── 📁context \\ React context files
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── 📁data \\ Static data files such as .json files
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── 📁hook \\ Custom global hooks used across our application
-   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── index.js \\ Initial application page
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁pages \\ Individual page folders
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── 📁Dashboard \\ A grid containing a collection of widgets
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁widgets \\ A collection of widgets suitable for dashboards
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁Devices \\ Device management page
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁Home \\ Default home page
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁Login \\ Authorised user login page
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁Signup \\ Tenant signup page
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁utils \\ Custom application utilities used globally
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📁apiManager \\ Global API endpoint management utility
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── auth.js // Performs a login request and stored JWT in context
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── AuthProvider.js // Authentication callback provider
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── Constants.js // System constants such as API URIs
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── RequireAuth.js // Checks current login state
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── withClickOutside.js // Higher Order Component to close navbar
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── WorkspaceProvider.js // Manages user workspaces
+└── App.js \\ Main React Application Component
+    └── 📁assets \\ Static items such as images, css, fonts etc.
+    └── 📁components \\ Individual components organised by type
+        └── 📁form \\ User form components for user input
+        └── 📁modal \\ Pop-Up modals
+        └── 📁ui \\ Small UI components common throughout the application
+    └── 📁context \\ React context files
+    └── 📁data \\ Static data files such as .json files
+    └── 📁hook \\ Custom global hooks used across our application
+    └── index.js \\ Initial application page
+    └── 📁pages \\ Individual page folders
+        └── 📁Dashboard \\ A grid containing a collection of widgets
+            └── 📁widgets \\ A collection of widgets suitable for dashboards
+        └── 📁Devices \\ Device management page
+        └── 📁Home \\ Default home page
+      └── 📁Login \\ Authorised user login page
+        └── 📁Signup \\ Tenant signup page
+   └── 📁utils \\ Custom application utilities used globally
+        └── 📁apiManager \\ Global API endpoint management utility
+        └── auth.js // Performs a login request and stored JWT in context
+       └── AuthProvider.js // Authentication callback provider
+        └── Constants.js // System constants such as API URIs
+        └── RequireAuth.js // Checks current login state
+        └── withClickOutside.js // Higher Order Component to close navbar
+        └── WorkspaceProvider.js // Manages user workspaces
 
 
 ## Packages
