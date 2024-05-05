@@ -25,36 +25,35 @@ Visual Studio Code is recommended for opening the main solution directory for th
 ## Solution Project Structure
 The solution consists of the following directories and sub-directories:
 
-└── 📁public – \\ Public root div element where all content is to be rendered
-	└── index.html
-    └── robots.txt
-└── 📁src \\ Main application code
-└── App.js \\ Main React Application Component
-    └── 📁assets \\ Static items such as images, css, fonts etc.
-    └── 📁components \\ Individual components organised by type
-        └── 📁form \\ User form components for user input
-        └── 📁modal \\ Pop-Up modals
-        └── 📁ui \\ Small UI components common throughout the application
-    └── 📁context \\ React context files
-    └── 📁data \\ Static data files such as .json files
-    └── 📁hook \\ Custom global hooks used across our application
-    └── index.js \\ Initial application page
-    └── 📁pages \\ Individual page folders
-        └── 📁Dashboard \\ A grid containing a collection of widgets
-            └── 📁widgets \\ A collection of widgets suitable for dashboards
-        └── 📁Devices \\ Device management page
-        └── 📁Home \\ Default home page
-      └── 📁Login \\ Authorised user login page
-        └── 📁Signup \\ Tenant signup page
-   └── 📁utils \\ Custom application utilities used globally
-        └── 📁apiManager \\ Global API endpoint management utility
-        └── auth.js // Performs a login request and stored JWT in context
-       └── AuthProvider.js // Authentication callback provider
-        └── Constants.js // System constants such as API URIs
-        └── RequireAuth.js // Checks current login state
-        └── withClickOutside.js // Higher Order Component to close navbar
-        └── WorkspaceProvider.js // Manages user workspaces
-
+    └── 📁public – \\ Public root div element where all content is to be rendered
+		└── index.html
+	    └── robots.txt
+    └── 📁src \\ Main application code
+	    └── App.js \\ Main React Application Component
+	    └── 📁assets \\ Static items such as images, css, fonts etc.
+	    └── 📁components \\ Individual components organised by type
+	        └── 📁form \\ User form components for user input
+	        └── 📁modal \\ Pop-Up modals
+	        └── 📁ui \\ Small UI components common throughout the application
+	    └── 📁context \\ React context files
+	    └── 📁data \\ Static data files such as .json files
+	    └── 📁hook \\ Custom global hooks used across our application
+	    └── index.js \\ Initial application page
+	    └── 📁pages \\ Individual page folders
+	        └── 📁Dashboard \\ A grid containing a collection of widgets
+	            └── 📁widgets \\ A collection of widgets suitable for dashboards
+	        └── 📁Devices \\ Device management page
+	        └── 📁Home \\ Default home page
+	      └── 📁Login \\ Authorised user login page
+	        └── 📁Signup \\ Tenant signup page
+	    └── 📁utils \\ Custom application utilities used globally
+            └── 📁apiManager \\ Global API endpoint management utility
+	        └── auth.js // Performs a login request and stored JWT in context
+		    └── AuthProvider.js // Authentication callback provider
+	        └── Constants.js // System constants such as API URIs
+	        └── RequireAuth.js // Checks current login state
+	        └── withClickOutside.js // Higher Order Component to close navbar
+	        └── WorkspaceProvider.js // Manages user workspaces
 
 ## Packages
 The following packages are used across the solution:
